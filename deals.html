@@ -1,0 +1,1284 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow,noarchive"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><div style="font:13px/1.4 system-ui,-apple-system,Segoe UI,sans-serif;padding:7px 16px;background:rgba(127,127,127,.16);color:inherit;text-align:center">Копия только для просмотра, снимок от 22.11.2026 02:00 (UTC+7). Изменения на этой странице не сохраняются.</div><script>(function(){var S={"c": {"deals": {"agent": {"sentAt": "2026-11-21T14:23:16.047Z", "status": "sent", "updatedAt": "2026-11-21T14:23:16.047Z"}, "grizzbx": {"sentAt": "2026-11-21T14:23:31.768Z", "status": "sent", "updatedAt": "2026-11-21T14:23:31.768Z"}, "imjustjarrod": {"sentAt": "2026-11-21T14:22:32.484Z", "status": "sent", "updatedAt": "2026-11-21T14:22:32.484Z"}, "jayify": {"sentAt": "2026-11-21T14:22:56.535Z", "status": "sent", "updatedAt": "2026-11-21T14:22:56.535Z"}, "nifrin": {"note": "19.11 снял бесплатно по раннему ключу: «Я ВЫЙГРАЛ ВСЕ ФИШКИ И СТАЛ КОРОЛЕМ в Mortal Caps на 100%! (DEMO)», 40 мин, youtube.com/watch?v=7Iusoc4WJaQ. Платное не предлагаем. 22.11: ссылка на Steam в описании появилась (по просьбе Ивана от 19.11); 15 398 просмотров, 141 лайк, 27 комментариев.", "status": "hold", "updatedAt": "2026-11-21T18:40:00Z"}}}, "d": {"settings/main": {"aiLine": true, "sender": "mortalcapsgame@gmail.com", "updatedAt": "2026-11-21T09:50:00.000Z"}}};
+function ro(){return Promise.reject({code:"invalid_argument",message:"read-only copy"})}
+function ds(id,d){return {id:id,exists:d!=null,data:function(){return d}}}
+function dref(path){var p=path.split("/"),d=S.d[path];if(d===undefined)d=(S.c[p[0]]||{})[p[1]];var s=ds(p[p.length-1],d===undefined?null:d);
+ return {onSnapshot:function(cb){setTimeout(function(){cb(s)},0);return function(){}},get:function(){return Promise.resolve(s)},set:ro,update:ro,"delete":ro}}
+function coll(n){var m=S.c[n]||{},docs=Object.keys(m).map(function(k){return ds(k,m[k])});
+ var snap={docs:docs,size:docs.length,empty:!docs.length,metadata:{fromCache:false},forEach:function(f){docs.forEach(f)}};
+ var q={onSnapshot:function(cb){setTimeout(function(){cb(snap)},0);return function(){}},get:function(){return Promise.resolve(snap)},
+  doc:function(id){return dref(n+"/"+id)},where:function(){return q},orderBy:function(){return q},limit:function(){return q}};return q}
+var db={collection:coll,doc:dref};window.claude={use:function(n){return Promise.resolve(n==="db"?db:null)}};})();</script><title>Сделки к демо Mortal Caps</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working desk. Summary strip on top, then waves of deal cards; each card is one person or platform with its letter folded inside. */
+:root{
+  --bg:#f5f2f6; --surface:#ffffff; --sunk:#efeaf1; --ink:#231b27; --muted:#6c6171; --line:#e2d9e6;
+  --accent:#c9501c; --accent-soft:#f8e6dc; --accent-ink:#ffffff;
+  --s-todo:#8a8090; --s-sent:#2f6fd0; --s-replied:#0f8a8a; --s-quoted:#b9780b; --s-agreed:#2c8a3e; --s-declined:#c23a3a; --s-hold:#7a4fc0;
+  --warn-bg:#fff4dc; --warn-ink:#7a4f00;
+  --font-display:"Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body:"Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#161118; --surface:#211a24; --sunk:#1b151e; --ink:#efe8f1; --muted:#a99eae; --line:#3a303e;
+  --accent:#f07a42; --accent-soft:#3a2219; --accent-ink:#1a0f0a;
+  --s-todo:#9d93a3; --s-sent:#6aa2f2; --s-replied:#4cc4c4; --s-quoted:#e3aa3c; --s-agreed:#5cc271; --s-declined:#ec6c6c; --s-hold:#a888e6;
+  --warn-bg:#3a2e12; --warn-ink:#f3d58c; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#161118; --surface:#211a24; --sunk:#1b151e; --ink:#efe8f1; --muted:#a99eae; --line:#3a303e;
+  --accent:#f07a42; --accent-soft:#3a2219; --accent-ink:#1a0f0a;
+  --s-todo:#9d93a3; --s-sent:#6aa2f2; --s-replied:#4cc4c4; --s-quoted:#e3aa3c; --s-agreed:#5cc271; --s-declined:#ec6c6c; --s-hold:#a888e6;
+  --warn-bg:#3a2e12; --warn-ink:#f3d58c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--font-body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 64px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4.4vw,40px);line-height:1.1}
+h2{font-size:22px}
+h3{font-size:18px}
+p{margin:0}
+a{color:var(--accent)}
+.lede{color:var(--muted);max-width:68ch}
+.mono{font-family:var(--font-mono);font-size:13px}
+.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header */
+.head{display:flex;flex-direction:column;gap:12px}
+.eyebrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--sunk);border:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.chip b{color:var(--ink);font-weight:600}
+.loadnote{font-size:13px;color:var(--warn-ink);background:var(--warn-bg);padding:6px 10px;border-radius:8px}
+
+/* summary */
+.summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:12px}
+@media (max-width:760px){.summary{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.statusbar{display:flex;flex-wrap:wrap;gap:6px}
+.sb{display:inline-flex;gap:6px;align-items:center;font-size:13px;padding:2px 8px;border-radius:6px;background:var(--sunk)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--s-todo);flex:none}
+.money{display:flex;flex-direction:column;gap:8px}
+.mrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-size:13.5px}
+.bar{height:6px;border-radius:3px;background:var(--sunk);overflow:hidden;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
+.num{font-variant-numeric:tabular-nums}
+
+/* decisions */
+.decide{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.dec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.dec p{font-size:14px;color:var(--muted)}
+.toggle{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14px}
+.toggle input{width:18px;height:18px;accent-color:var(--accent)}
+.sender input{width:100%;max-width:340px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:7px;padding:6px 9px;font:inherit;font-size:14px}
+.sender input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.lbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.tl{padding:12px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px;min-width:0}
+.tl:last-child{border-right:0}
+.tl .d{font-family:var(--font-mono);font-size:12.5px;color:var(--accent);font-weight:500}
+.tl p{font-size:13.5px}
+
+/* filters */
+.filters{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:999px;font-size:13px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters select,.filters input{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 9px;font-size:13px;min-width:0}
+.filters input{flex:1 1 180px}
+.count{font-size:13px;color:var(--muted);margin-left:auto}
+
+/* waves */
+.wave{display:flex;flex-direction:column;gap:12px}
+.wave-head{display:flex;flex-direction:column;gap:4px}
+.wave-head p{color:var(--muted);font-size:14px;max-width:72ch}
+.cards{display:flex;flex-direction:column;gap:12px}
+
+/* card */
+.card{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--s-todo);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card[data-st="sent"]{border-left-color:var(--s-sent)}
+.card[data-st="replied"]{border-left-color:var(--s-replied)}
+.card[data-st="quoted"]{border-left-color:var(--s-quoted)}
+.card[data-st="agreed"]{border-left-color:var(--s-agreed)}
+.card[data-st="declined"]{border-left-color:var(--s-declined);opacity:.72}
+.card[data-st="hold"]{border-left-color:var(--s-hold)}
+.ctop{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.cname{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 320px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11.5px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.price{border-color:transparent;background:var(--accent-soft);color:var(--accent)}
+.tag.anti{border-color:transparent;background:var(--warn-bg);color:var(--warn-ink)}
+.stsel{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--sunk);font-weight:600;font-size:13.5px}
+.who{color:var(--ink);max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 18px}
+.cell{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cell .v{font-size:14px;overflow-wrap:anywhere}
+.contact{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:3px 9px;font-size:12.5px}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+a.btn{text-decoration:none;display:inline-block}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.primary:hover{color:var(--accent-ink);filter:brightness(1.07)}
+.asks{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:2px;font-size:14px}
+.note{font-size:13.5px;background:var(--warn-bg);color:var(--warn-ink);padding:8px 10px;border-radius:8px}
+.mine{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.6fr) minmax(0,2fr);gap:10px;align-items:end}
+.mine label{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mine input,.mine textarea{border:1px solid var(--line);background:var(--sunk);border-radius:8px;padding:6px 9px;font-size:13.5px;width:100%;min-width:0}
+.mine textarea{resize:vertical;min-height:34px;height:34px}
+.cfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.remind{font-size:12.5px;color:var(--s-sent);font-weight:600}
+.saved{font-size:12px;color:var(--muted)}
+.letter{border:1px solid var(--line);border-radius:var(--r);background:var(--sunk);padding:12px;display:flex;flex-direction:column;gap:8px}
+.ltabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.ltabs button{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:2px 9px;font-size:12.5px}
+.ltabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.subj{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.subj input{flex:1 1 260px;border:1px solid var(--line);border-radius:7px;padding:5px 8px;background:var(--surface);font-size:13.5px;min-width:0}
+.body{width:100%;min-height:260px;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:10px;font:13.5px/1.55 var(--font-mono);resize:vertical}
+.hint{font-size:12.5px;color:var(--muted)}
+.empty{color:var(--muted);font-size:14px;padding:18px;border:1px dashed var(--line);border-radius:var(--r);text-align:center}
+.other{font-size:14px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+@media (max-width:640px){
+  .mine{grid-template-columns:1fr}
+  .count{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">
+      <span class="chip">Mortal Caps · Steam 5495840</span>
+      <span class="chip">Демо: <b>1–3 декабря</b>, если Valve одобрит раньше</span>
+      <span class="chip">Цены собрать к <b>28 ноября</b></span>
+    </div>
+    <h1>Сделки к демо</h1>
+    <p class="lede">Все платные размещения из трёх программ: кому пишем, как связаться, что спросить, какую цену ждём и что это даст. Статусы, названные цены и заметки сохраняются здесь, их видите вы и я. Сумму первыми не называем, платим только после вашего решения по каждому предложению.</p>
+    <p class="loadnote" id="loadnote" hidden></p>
+  </header>
+
+  <section class="summary" aria-label="Сводка">
+    <div class="panel">
+      <span class="label">Статусы</span>
+      <div class="statusbar" id="statusbar"></div>
+    </div>
+    <div class="panel">
+      <span class="label">Названные и согласованные цены против программ</span>
+      <div class="money" id="money"></div>
+    </div>
+  </section>
+
+  <section class="wave" aria-labelledby="h-before">
+    <div class="wave-head"><h2 id="h-before">Перед рассылкой</h2></div>
+    <div class="decide">
+      <div class="dec">
+        <span class="label">Строка про ИИ в письмах</span>
+        <label class="toggle"><input type="checkbox" id="aiLine"> Добавлять раскрытие ИИ</label>
+        <p>Решено 19.11: раскрытие стоит во всех письмах, обе фразы дословно как на Steam. Снимите галочку, только если для конкретного письма решите иначе.</p>
+      </div>
+      <div class="dec">
+        <span class="label">Кто платит</span>
+        <p>Решено 21.11: бюджет заранее не задаём. Собираем цены, выгодное берём, остальное решаем по факту. Кто платит и в какой валюте, решим, когда дойдёт до оплаты. Часть продавцов может не принять платёж из Вьетнама: это вопрос в каждом письме.</p>
+      </div>
+      <div class="dec">
+        <span class="label">С какой почты</span>
+        <label class="sender"><input id="sender" type="email" autocomplete="off" spellcheck="false" placeholder="адрес Gmail, открытый в Chrome" aria-label="Почта для отправки"></label>
+        <p>«Открыть в Gmail» в карточке открывает готовое письмо с этого адреса: адресат, тема, текст и подпись уже стоят. Остаётся нажать «Отправить», потом «Отправил ✓» в карточке. Ответы и цены вносите сюда: я сверю их с программами и подскажу, что брать.</p>
+      </div>
+    </div>
+    <div class="timeline" aria-label="Календарь">
+      <div class="tl"><span class="d">19–21.11</span><p>Отправить волны 1 и 2, открыть кабинеты</p></div>
+      <div class="tl"><span class="d">24–25.11</span><p>Напомнить тем, кто молчит 4 дня</p></div>
+      <div class="tl"><span class="d">26–28.11</span><p>Сравнить цены, выбрать, держать даты плавающими</p></div>
+      <div class="tl"><span class="d">1–3.12</span><p>Демо: публикации в первые 48 часов</p></div>
+      <div class="tl"><span class="d">+7 дней</span><p>Платные предложения тем, кто получил бесплатный ключ</p></div>
+    </div>
+  </section>
+
+  <nav class="filters" aria-label="Фильтры">
+    <div class="seg" id="waveSeg"></div>
+    <select id="fDir" aria-label="Направление"></select>
+    <select id="fSt" aria-label="Статус"></select>
+    <input id="fQ" type="search" placeholder="Поиск по имени или контакту" aria-label="Поиск">
+    <span class="count" id="count"></span>
+  </nav>
+
+  <main id="waves" class="wave" style="gap:36px"></main>
+</div>
+
+<script>
+const YT_EN=["a dedicated video about the demo","a 60–90 second integration","a Short about the demo"];
+const YT_RU=["отдельный ролик про демо","интеграция на 60–90 секунд","Shorts про демо"];
+const SH_EN=["one sponsored short posted to TikTok, Instagram Reels and YouTube Shorts around the demo launch (early December)","a Spark Ads code and Instagram partnership-ads permission for that post"];
+const RU100=["отдельный ролик по демо (на 100% или первое прохождение)","Shorts по демо"];
+const JA_F=["体験版の単独紹介・実況動画","ショート動画（任意）"];
+const PT_F=["um vídeo dedicado à demo","uma integração de 60–90 segundos","um Short sobre a demo"];
+const DE_F=["ein eigenes Video zur Demo","eine Integration von 60–90 Sekunden","ein Short zur Demo"];
+const ES_F=["un vídeo dedicado a la demo","una integración de 60–90 segundos","un Short sobre la demo"];
+const FR_F=["une vidéo dédiée à la démo","une intégration de 60 à 90 secondes","un Short sur la démo"];
+const LINKS_EN=`Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/`;
+const LINKS_RU=`Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Пресс-кит: https://illum1nat34.github.io/mortalcaps-presskit/`;
+const RATE_EN="If you have a rate for small indie developers, I'd be glad to hear it.";
+const RATE_RU="Если у вас есть цена для маленьких инди-разработчиков, буду рад её услышать.";
+const PITCH_EN="I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.";
+const PITCH_RU="Я Иван, соло-разработчик, делаю Mortal Caps. Это инкременталка про коллекционные фишки 90-х: бьёшь по стопке, каждая фишка лицом вверх приносит монеты, а в коллекции 216 гротескных фишек. Бесплатное демо выйдет в Steam в начале декабря, точная дата зависит от проверки Valve.";
+
+const DEALS=[
+/* ---------------- ВОЛНА 1: МИНИМУМ ---------------- */
+{id:"imjustjarrod",name:"ImJustJarrod",wave:"w1",tier:"min",dir:"shorts",lang:"en",
+ who:"Шоукейс инди-игр в коротких роликах: один ролик сразу уходит в TikTok, Reels и Shorts. Зрители в Instagram на 68% из США.",
+ audience:"TikTok 53 тыс. подп.; средние за 30 дней: TikTok 10,4 тыс., Instagram 48,4 тыс., Shorts 13,2 тыс.",
+ contact:"imjustjarrod@pm.me",price:"$300 за ролик на три площадки, сам пишет, что готов обсуждать меньше",basis:"прайс",
+ ask:["Свободные даты 1–7 декабря и можно ли держать дату плавающей до письма Valve","Даст ли код Spark и разрешение на рекламу поверх поста в Instagram, сколько это стоит"],
+ expect:"≈72 тыс. просмотров на трёх площадках; 72–360 вишлистов (оценка исследования)",timing:"День демо или первые 3 дня",
+ letter:{formats:{en:SH_EN}}},
+{id:"jayify",name:"Jayify",wave:"w1",tier:"min",dir:"shorts",lang:"en",
+ who:"TikTok-автор про инкременталки и приятные механики. Ролик про One Million Coins набрал 704 тыс.",
+ audience:"TikTok 229 тыс. подп.; 0,7–1,5 млн на жанровых роликах (это лучшие, типичный пост ниже)",
+ contact:"jayify.business@gmail.com",price:"Не опубликована. В программе ≈$400 за ролик",basis:"оценка",
+ ask:["Цена ролика в TikTok и кросс-поста в Reels и Shorts","Страны зрителей: нужна доля США и Европы","Код Spark для рекламы поверх поста"],
+ expect:"0,1–0,5% просмотров в вишлисты: при 300 тыс. просмотров это 300–1 500",timing:"Неделя демо",
+ letter:{formats:{en:SH_EN}}},
+{id:"agent",name:"Agent (@agenterino)",hello:"Agent",wave:"w1",tier:"min",dir:"shorts",lang:"en",
+ who:"Короткие ролики про idle и кликеры. Единственный в списке, у кого TikTok сильнее Instagram.",
+ audience:"TikTok 171 тыс. подп.; средние: TikTok 34,8 тыс., IG 21,5 тыс., Shorts 7,6 тыс.",
+ contact:"contact@agenterino.com",price:"$320–385 за ролик на три площадки",basis:"оценка",
+ ask:["Цена ролика на три площадки","Доля США и Европы в TikTok (в Instagram у него Индия 39%)","Код Spark"],
+ expect:"≈64 тыс. просмотров; 64–320 вишлистов",timing:"Неделя демо",
+ notes:"Его YouTube про OBS и технику; idle и кликеры — в TikTok. У него 396 кампаний на Jestr: перед оплатой проверить, что просмотры живые и из нужных стран.",
+ letter:{formats:{en:SH_EN}}},
+{id:"grizzbx",name:"grizzbx",wave:"w1",tier:"min",dir:"shorts",lang:"en",
+ who:"TikTok и YouTube про инкременталки; пост с тегом #incrementalgame набрал 298 тыс.",
+ audience:"TikTok 118 тыс. подп., YouTube 61 тыс.; от 66 тыс. до 14 млн просмотров",
+ contact:"grizzbx@gmail.com",price:"Около $400 за ролик",basis:"оценка",
+ ask:["Цена ролика в TikTok с кросс-постом в Shorts и Reels","Типичные просмотры спонсорского поста","Страны зрителей"],
+ expect:"При 66 тыс. просмотров (нижняя граница его роликов) это 66–330 вишлистов",timing:"Неделя демо",
+ letter:{formats:{en:SH_EN}}},
+{id:"indiespotlight",name:"Indie Spotlight (Telegram @indie)",wave:"w1",tier:"min",dir:"ru",lang:"ru",
+ who:"Русский Telegram-канал про инди: пост навсегда, сторис на 48 часов и дубли в VK, чат и MAX.",
+ audience:"18,7 тыс. подп.; заявлено ≈4 500 просмотров, на свежих постах 2,8–3,95 тыс.; 80% мужчин",
+ contact:"@seobro",price:"5 000 ₽ ($60) за пост; 3 поста по цене двух — 10 000 ₽ ($120); для юрлица ×3",basis:"прайс",
+ ask:["Итоговая цена за 3 поста по тарифу для инди-разработчика","Свободные даты в декабре"],
+ expect:"50–170 вишлистов с поста (данные канала; у Nocturnal 2 около 130)",timing:"День демо в 18:30 МСК, затем декабрь и февраль",
+ notes:"Реклама в Telegram в России запрещена, ФАС не наказывает до 31.12.2026. Все русские посты ставим в декабре.",
+ letter:{where:"Это сообщение в Telegram @seobro, темы нет.",custom:{ru:{subj:"",body:`Здравствуйте! Меня зовут Иван, я соло-разработчик игры Mortal Caps. Хотел узнать цены на рекламу в Indie Spotlight.
+
+Mortal Caps — инкременталка про коллекционные фишки 90-х. Бесплатное демо выйдет в Steam в начале декабря, а в феврале игра будет на Steam Next Fest.
+
+Подскажите, пожалуйста:
+1. сколько стоит пост со сторис для инди-разработчика и есть ли цена за несколько постов;
+2. какие даты свободны в декабре и в феврале.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/`}}}},
+{id:"vgtimes",name:"VGTimes: Telegram-каналы",wave:"w1",tier:"min",dir:"ru",lang:"ru",
+ who:"Сеть Telegram-каналов игрового сайта VGTimes: основной, скидки и плюс, а также рассылка ботами.",
+ audience:"@vgtimes 175 тыс., @vgtimes_discounts 55 тыс., @vgtimes_plus 35 тыс. подп.; охват постов не опубликован",
+ contact:"missiya@vgtimes.com",price:"@vgtimes 18 000 ₽ ($217); @vgtimes_discounts 7 200 ₽ ($87); @vgtimes_plus 3 000 ₽ ($36). В программе два малых канала, $123",basis:"прайс",
+ ask:["Действует ли прайс до 31.12","Средний охват поста в каждом канале","Свободные даты в декабре"],
+ expect:"Охват не известен, вишлисты меряем меткой",timing:"Неделя демо",
+ notes:"Тот же закон о рекламе: размещаем до 31.12.",
+ letter:{custom:{ru:{subj:"Вопрос о цене рекламы в Telegram-каналах VGTimes: Mortal Caps",body:`Здравствуйте!
+
+Я Иван, соло-разработчик, делаю Mortal Caps. Это инкременталка про коллекционные фишки 90-х: бьёшь по стопке, каждая фишка лицом вверх приносит монеты, а в коллекции 216 гротескных фишек. Бесплатное демо выйдет в Steam в начале декабря, точная дата зависит от проверки Valve.
+
+Хотел узнать про рекламу в ваших каналах @vgtimes_discounts, @vgtimes_plus и @vgtimes. Подскажите, пожалуйста:
+1. сколько стоит пост в каждом канале и действует ли прайс до 31.12;
+2. какой средний охват у поста в каждом канале;
+3. какие даты свободны в декабре.
+
+Если у вас есть цена для маленьких инди-разработчиков, буду рад её услышать.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Пресс-кит: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Спасибо,
+Иван`}}}},
+{id:"denfami",name:"Denfami (電ファミニコゲーマー)",wave:"w1",tier:"min",dir:"asia",lang:"ja",
+ who:"Крупное японское игровое издание. POST-タイアップ: заметка из нашего пресс-релиза с пометкой PR и пост в их X на 1,45 млн подписчиков.",
+ audience:"6,5 млн+ уникальных в месяц; X 1,45 млн подп. (данные издания)",
+ contact:"info@mare-inc.net",price:"POST ¥100 000 ($627) за 3 дня; с нашим видео ¥200 000 ($1 255). Спецматериал C от ¥500 000 ($3 137)",basis:"прайс",
+ ask:["Работают ли с иностранным частным разработчиком","Ближайшая дата и что будет, если Valve сдвинет демо","Пресс-релиз присылать на английском или японском"],
+ expect:"По платному POST данных нет. Бесплатная заметка Denfami дала другой игре почти 3 000 вишлистов за день, но платная с пометкой PR обычно слабее",timing:"Бронировать только после письма Valve, публикация в день демо",
+ anti:true,notes:"Denfami называет себя «статьи, которые ИИ не напишет», редакция может отказать: о ИИ писать в первом письме. Японский текст релиза лучше отдать на вычитку носителю (в программе $445).",
+ letter:{custom:{ja:{subj:"POSTタイアップの料金に関するお問い合わせ（Steam無料体験版「Mortal Caps」）",body:`電ファミニコゲーマー 広告ご担当者様
+
+はじめまして。インクリメンタルゲーム「Mortal Caps」を一人で開発しているインディー開発者、Ivanと申します。90年代のコレクションキャップを題材にしたゲームで、積み上げたキャップを叩き、表になったキャップがコインを生み、216種類の奇妙なキャップを集めていきます。
+
+12月上旬にSteamで無料体験版を公開する予定で、媒体資料に掲載のPOSTタイアップ（動画付き）の料金と掲載可能な日程を伺いたく、ご連絡いたしました。
+以下についてお教えいただけますでしょうか。
+1. 海外の個人開発者でもお取り扱いいただけるか
+2. 料金と、12月の掲載可能な日程
+3. 料金に含まれる内容（掲載期間、想定PVなど）
+
+個人開発のため予算が限られております。個人開発者向けの料金がございましたら、あわせてお知らせいただけますと幸いです。
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+プレスキット: https://illum1nat34.github.io/mortalcaps-presskit/
+
+よろしくお願いいたします。
+Ivan（Mortal Caps 開発者）`},
+ en:{subj:"Price of a POST tie-up for a free Steam demo: Mortal Caps",body:`Hello,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'd like to know the price and available dates of the POST tie-up with video from your media guide. Could you tell me:
+1. Whether you work with individual developers outside Japan
+2. The price, and which dates are available in December
+3. What the price includes (how long the post stays up, expected views)
+
+If you have a rate for small indie developers, I'd be glad to hear it.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thank you,
+Ivan`}}}},
+{id:"kuroroji",name:"くろろじちゃんねる",wave:"w1",tier:"min",dir:"asia",lang:"ja",
+ who:"Японский канал про инди и инкременталки; единственный в Японии, кто открыто продаёт ролики и быстро отвечает. К ИИ относится спокойно.",
+ audience:"41,8 тыс. подп.; медиана ~8,5 тыс. просмотров",
+ contact:"https://kuroroji.site/promotion",price:"Договорная; оценка ¥85–255 тыс. ($533–1 600). В программе $800",basis:"оценка",
+ ask:["Цена отдельного ролика о начале игры","Ближайшая дата публикации","Отчёт: просмотры и страны"],
+ expect:"43–128 вишлистов (5–15 на 1 000 просмотров)",timing:"Неделя демо",
+ letter:{where:"Это текст для формы на сайте канала, темы нет.",custom:{ja:{subj:"",body:`お世話になっております。インクリメンタルゲーム「Mortal Caps」を一人で開発しているインディー開発者、Ivanと申します。
+
+12月上旬にSteamで無料体験版を公開する予定で、有償の動画プロモーションの料金を伺いたく、ご連絡いたしました。
+希望内容: ゲーム序盤の実況・単独紹介動画（体験版）
+料金の目安と、最短の公開可能日を教えていただけますでしょうか。
+個人開発のため予算が限られております。個人開発者向けの料金がございましたら、あわせてお知らせいただけますと幸いです。
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+
+よろしくお願いいたします。
+Ivan`}}}},
+
+/* ---------------- КАБИНЕТЫ: САМООБСЛУЖИВАНИЕ ---------------- */
+{id:"reddit",name:"Reddit Ads",wave:"self",tier:"min",dir:"ads",kind:"ads",
+ who:"Реклама постами и роликами в выбранных сабреддитах и интересах. Лучшая доказательная база среди рекламы.",
+ audience:"Кейсы: This Grand Life 2 $1,10 за вишлист; Danchi Days $1,79–1,94; Match Morphosis ≈$1,54",
+ contact:"https://ads.reddit.com",price:"$40 в день, 20 дней — $800 в минимуме",basis:"наш бюджет",
+ steps:["Открыть кабинет и способ оплаты (это делаете вы)","Посмотреть доступные страны и минимальный дневной бюджет","Я соберу 3 ролика из наших 23 и 2 картинки","Запуск в день демо; стоп, если вишлист дороже $3 два теста подряд","Не ставить только десктоп: у Match Morphosis 93% трафика Steam было с телефонов"],
+ expect:"400–700 вишлистов за $800 по ценам кейсов",timing:"С дня демо, 20 дней",
+ notes:"Автор кейса Danchi Days позже счёл рекламу невыгодной: вишлисты из Reddit хуже превращаются в покупки."},
+{id:"bountyboard",name:"Bounty Board",wave:"self",tier:"min",dir:"youtube",kind:"platform",
+ who:"Платные задания авторам YouTube и Twitch: прохождение демо, VOD, пост. Самый быстрый способ проверить, сколько вишлистов дают просмотры.",
+ audience:"1,1 тыс. авторов (данные площадки); Boxville 2 за ~$400 получил 8 VOD и 8 постов",
+ contact:"https://www.bountyboard.gg/pricing",price:"Пул $500 + по 10% с каждой стороны = $550",basis:"прайс",
+ steps:["Зарегистрировать студию на bountyboard.gg","Создать задание: прохождение демо или VOD на Twitch, $50–100 за автора","Внести пул $500 после решения по бюджету","Ключи не нужны: демо бесплатное"],
+ expect:"Вишлисты не опубликованы; главная цель — замер вишлистов на 1 000 просмотров",timing:"1–14 декабря"},
+{id:"telegain",name:"Telega.in: @steamvk, @freebie_steam, @in_gme, @foldergames",wave:"self",tier:"min",dir:"ru",kind:"platform",lang:"ru",
+ who:"Биржа Telegram-рекламы. Четыре игровых канала с открытыми ценами и самым дешёвым охватом в выборке.",
+ audience:"Охват за 24 ч: @steamvk 6 163, @freebie_steam 4 593, @in_gme 2 210, @foldergames 2 037",
+ contact:"https://telega.in",price:"$67 + $51 + $34 + $15 ≈ $167, с комиссией $186",basis:"прайс",
+ steps:["Завести аккаунт рекламодателя на telega.in (это делаете вы)","Отправить заявки во все четыре канала на день демо","Проверить оплату из-за рубежа и кто ставит маркировку","Текст поста подготовлю я"],
+ expect:"≈15 тыс. охвата; вишлисты по каналам не измерены, меряем меткой",timing:"День демо",
+ notes:"Цены на бирже меняются ежедневно. @foldergames похож на сетевой канал: проверить отзывы перед оплатой. Размещение в России — до 31.12."},
+{id:"dtf",name:"DTF: продвижение поста",wave:"self",tier:"min",dir:"ru",kind:"platform",lang:"ru",
+ who:"Платное продвижение своего поста в лентах DTF, крупнейшего русского игрового сообщества.",
+ audience:"~10 млн уникальных в месяц, 85% из России; пост Pocket Cat дал 26 вишлистов",
+ contact:"https://dtf.ru",price:"От 500 ₽, CPM от 500 ₽ ($6). В программе $241",basis:"прайс",
+ steps:["Опубликовать пост о демо со своего аккаунта DTF","Включить продвижение: ставка ≈$241 на 3–4 дня","Ссылка Steam с меткой — кнопка ниже"],
+ expect:"Порядка десятков вишлистов на пост (кейс Pocket Cat: 26)",timing:"День демо"},
+{id:"incrementalgames",name:"incrementalgames.org: спонсорская карточка",wave:"self",tier:"min",dir:"press",kind:"platform",lang:"en",
+ who:"Каталог инкременталок с подписанной карточкой «Sponsored» на главной и страницах игр. Единственное платное место, которое бьёт прямо в нашу нишу.",
+ audience:"22 тыс.+ просмотров страниц в месяц; ≈3 900 показов карточки в неделю (данные сайта)",
+ contact:"https://incrementalgames.org/developers",price:"$30 в неделю; 8 недель — $240",basis:"прайс",
+ steps:["Подать бесплатный листинг на incrementalgames.org/developers","После одобрения купить Sponsored: сначала 2 недели ($60), потом продлить","Ссылка Steam с меткой — кнопка ниже"],
+ expect:"Результатов не опубликовано; ≈$7,7 за 1 000 показов",timing:"С дня демо и в феврале",
+ notes:"Правил про ИИ на сайте нет. Владелец сам делает игру из каталога и это раскрывает. Если листинг отклонят, деньги возвращают."},
+{id:"tiktokcheck",name:"TikTok Ads Manager: проверить страны",wave:"self",tier:"mid",dir:"ads",kind:"ads",
+ who:"Свой рекламный кабинет TikTok из Вьетнама. По таблице TikTok (июнь 2025) он не показывает рекламу в США, Великобритании, Канаде, Австралии и ЕС.",
+ contact:"https://ads.tiktok.com",price:"Кампания от $50, группа от $20 в день, плюс НДС 10%",basis:"наш бюджет",
+ steps:["Открыть ads.tiktok.com под аккаунтом студии","Попробовать выбрать США, Великобританию, Германию","Если нельзя — нужен партнёр с местным кабинетом (карточка в волне 2)","VPN и аренду аккаунтов не используем: TikTok банит все площадки ByteDance"],
+ expect:"Проверка, денег не тратим",timing:"До демо"},
+{id:"contentrewards",name:"Content Rewards (или Vyro)",wave:"self",tier:"mid",dir:"shorts",kind:"platform",lang:"en",
+ who:"Клипперы режут и постят наш материал со своих аккаунтов, оплата за просмотры. Подходят наши 23 готовых вертикальных ролика.",
+ audience:"708 кампаний, 434 бренда; игровых кейсов с вишлистами нет",
+ contact:"https://contentrewards.com/pricing",price:"Минимум $1 000, комиссия 10%; рынок ≈$1 за 1 000 просмотров. В программе $1 130",basis:"прайс",
+ steps:["Создать кампанию, загрузить 23 ролика и правила","Ставка ≈$1 за 1 000 просмотров","Ограничить страны, если сервис позволяет","Vyro — запасной вариант: тот же минимум $1 000, первый пост обычно меньше чем через час"],
+ expect:"≈1 млн просмотров за $1 000; сколько из них станут вишлистами, неизвестно",timing:"Первые 3 дня демо",
+ notes:"179 из 708 кампаний не потратили ничего, а владелец аккаунта не видит страну зрителей: проверять накрутку."},
+
+/* ---------------- ВОЛНА 2: СРЕДНЯЯ ---------------- */
+{id:"andyslaps",name:"AndySlaps",wave:"w2",tier:"mid",dir:"shorts",lang:"en",
+ who:"Короткие ролики про приятные механики; Abyssal Lapidary у него набрал 575 тыс.",
+ audience:"TikTok 15,8 тыс. (второй аккаунт 66,3 тыс.), IG 42,3 тыс., Shorts 17 тыс.",
+ contact:"Contact@AndySlaps.com",price:"$375–450 за ролик на три площадки",basis:"оценка",
+ ask:["Цена ролика на три площадки","Код Spark","Страны зрителей"],
+ expect:"≈75 тыс. просмотров; 75–375 вишлистов",timing:"Неделя демо",
+ letter:{formats:{en:SH_EN}}},
+{id:"shadesofnate",name:"ShadesOfNate",wave:"w2",tier:"mid",dir:"shorts",lang:"en",
+ who:"Посты о прокачке и массовом производстве в играх; IRON NEST набрал 4,5 млн.",
+ audience:"TikTok 333 тыс. подп.; средние: TikTok 33,5 тыс., IG 126 тыс., Shorts 19,9 тыс.",
+ contact:"shadesofnate@thenode.gg",price:"$900–1 080 за ролик",basis:"оценка",
+ ask:["Цена ролика на три площадки","Код Spark и разрешение на рекламу в Instagram","Страны зрителей"],
+ expect:"≈180 тыс. просмотров; 180–900 вишлистов",timing:"Неделя демо",
+ letter:{formats:{en:SH_EN}}},
+{id:"trapster",name:"Trapster",wave:"w2",tier:"mid",dir:"shorts",kind:"platform",lang:"en",
+ who:"Площадка: авторы сами записываются на кампанию и снимают короткие ролики, мы платим за проверенные просмотры.",
+ audience:"3 000+ авторов; просмотры по кейсам: TikTok 57%, Instagram 35%, Shorts 8%",
+ contact:"admin@trapster.gg",price:"От $3 000 на каждую площадку + 20% комиссии. В программе одна площадка, $3 600",basis:"прайс",
+ ask:["Минимум точно $3 000 на площадку, и 20% сверху или внутри","Через сколько дней после старта выходят первые ролики","Страны просмотров и отчёт по ним","Можно ли игре с раскрытием ИИ","Creators' Pick: бесплатная кампания победителю голосования, нужна страница Steam с вышедшим демо"],
+ expect:"Продавец: медиана $0,25 за вишлист в 27 кейсах. В план закладываем ≈$2,50, как у Lucky Shot на Jestr: ≈1 400 вишлистов",timing:"Неделя демо, если онбординг быстрый",
+ notes:"Сценарий и монтаж у авторов должны быть свои: наши готовые ролики сюда не подходят.",
+ letter:{custom:{en:{subj:"Prices for a demo launch campaign: Mortal Caps (free Steam demo, early December)",body:`Hi Trapster team,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'd like to understand Trapster's prices and timing for the demo launch. Could you tell me:
+1. Is the minimum $3,000 per platform, and is the 20% fee on top of it or inside it?
+2. How soon after a campaign starts do the first videos usually go live, and how flexible is the start date?
+3. Which countries do the views usually come from, and what reporting is included?
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"jestr",name:"Jestr",wave:"w2",tier:"mid",dir:"shorts",kind:"platform",lang:"en",
+ who:"Закрытый маркетплейс коротких роликов: оплата за 1 000 просмотров, эмбарго, ключи, отчёт. Сам советует давать авторам 1–2 недели до снятия эмбарго, поэтому ставим на Next Fest.",
+ audience:"3 297 одобренных авторов; просмотры по кейсам: Instagram 58%, TikTok 25%, Shorts 17%",
+ contact:"https://jestr.gg/for-studios",price:"От $5 000; комиссия 25% до $10 000 и 20% выше, внутри бюджета",basis:"прайс",
+ ask:["Принимают ли игру с раскрытием ИИ","Сколько идёт проверка заявки","Можно ли запустить кампанию к Next Fest 22 февраля с эмбарго до 9 февраля","Какие исходники нужны: просят чистые горизонтальные, без вшитых подписей","Indie Choice: когда следующий раунд бесплатной кампании"],
+ expect:"Lucky Shot: $5 000 → ≈2 000 вишлистов, $2,50 за штуку (уже после релиза)",timing:"Next Fest, февраль",
+ letter:{where:"Это текст для заявки на сайте и вопросы для созвона.",custom:{en:{subj:"Mortal Caps: campaign for Steam Next Fest (February 2027)",body:`I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'd like to know whether a Jestr campaign timed to Steam Next Fest on 22 February 2027 is possible, with creators getting access about two weeks before the embargo lifts.
+
+Questions:
+1. How long does the application review take?
+2. Is that timing realistic: access from about 9 February, posts from 22 February?
+3. When does the next Indie Choice round open?
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Ivan`}}}},
+{id:"easilydistracted",name:"Easily Distracted Games",wave:"w2",tier:"mid",dir:"youtube",lang:"en",
+ who:"YouTube-подборки «лучшие будущие инди» со спонсорскими местами. Брал Seaside Wash с демо и выходом в 2027 году — это лучший аналог нашей стадии.",
+ audience:"35,9 тыс. подп.; спонсорские подборки 120 тыс. и 211 тыс. просмотров",
+ contact:"easilydistractedgames@puka.agency",price:"$1 050–5 270 за место; в программе $1 500",basis:"оценка",
+ ask:["Цена спонсорского места в подборке и ближайшая дата","Есть ли подборка к Next Fest в феврале","Длина показа игры в ролике","Статистика и страны зрителей"],
+ expect:"Подборка 105–211 тыс. просмотров; на одно место вишлистов меньше, чем от отдельного ролика",timing:"Через 2 недели после демо и к Next Fest",
+ notes:"Подборки ближе к уютным играм, чем к нам. Адрес — агентство PUKA.",
+ letter:{custom:{en:{subj:"Rates for a sponsored slot: Mortal Caps (free Steam demo, early December)",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+Could you send rates and the next available dates for:
+1. a sponsored slot in one of your upcoming-games compilations after the demo launch
+2. a slot in a Steam Next Fest compilation in February 2027
+
+If you have a rate for small indie developers, I'd be glad to hear it.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"blitz",name:"Blitz (Screenwave)",hello:"Blitz team",wave:"w2",tier:"mid",dir:"youtube",lang:"en",
+ who:"Большой YouTube-канал с регулярными платными роликами об инди; 4 из 12 последних роликов спонсорские.",
+ audience:"4,36 млн подп.; спонсорские ролики 41–139 тыс.; Gas N Cars 116 тыс. в день выхода",
+ contact:"blitz@screenwavemedia.com",price:"$1 160–2 890 за ролик; в программе $2 000",basis:"оценка",
+ ask:["Цена отдельного ролика и интеграции","Ближайшие даты","Страны зрителей"],
+ expect:"Медиана 116 тыс. просмотров: 230–1 740 вишлистов, база ≈580 (2–15 на 1 000)",timing:"Через 2 недели после демо",
+ letter:{formats:{en:YT_EN}}},
+{id:"idreamofindie",name:"I Dream of Indie Games",hello:"Angela",wave:"w2",tier:"mid",dir:"youtube",lang:"en",
+ who:"Канал-подборка инди с открытыми спонсорскими форматами: место в подборке, интеграция, обзор.",
+ audience:"64,3 тыс. подп.; спонсорское место у Roulette Hero — 2 575 просмотров",
+ contact:"angela@idreamofindie.com",price:"$100–500, форматы есть, цен нет; в программе $300",basis:"оценка",
+ ask:["Цены на 2-минутную интеграцию и 10-минутный ролик","Подборка к Next Fest","Даты"],
+ expect:"Малые просмотры: десятки вишлистов",timing:"Через 1–2 недели после демо, подборка Next Fest",
+ letter:{formats:{en:["a 2-minute integration","a dedicated 10-minute video","a slot in your Steam Next Fest compilation (February 2027)"]}}},
+{id:"tiktokpartner",name:"Партнёр по TikTok Ads в США и Европе",wave:"w2",tier:"mid",dir:"ads",kind:"agency",lang:"en",
+ who:"Агентство с местным рекламным кабинетом, которое крутит Spark Ads по постам нашего аккаунта и авторов. Нужно, если проверка кабинета подтвердит запрет стран.",
+ contact:"welcome@puka.agency",contactNote:"Кандидаты: PUKA (welcome@puka.agency), Gamesight (gamesight.io, форма демо-звонка), AdZap (zap.ad)",
+ price:"Медиа + 10–20% комиссии; в программе $3 000 + 20% = $3 600",basis:"оценка",
+ ask:["Может ли вести рекламу для разработчика из Вьетнама и что нужно от нас (Business Center, коды Spark)","Комиссия, минимальный бюджет, плата за настройку","Какие страны может таргетировать","Отчёт: траты, клики, переходы в Steam по метке"],
+ expect:"Ориентир рынка ≈$1 за вишлист в США (заявление AdZap); своих данных нет",timing:"Договор 1–3 недели: к демо вряд ли, к январю реально",
+ letter:{custom:{en:{subj:"Prices for TikTok Spark Ads in the US and Europe for a free Steam demo",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'm based in Vietnam, and a TikTok ad account registered there cannot target the US, the UK or the EU. I'd like to know the price of running Spark Ads through a partner with a local TikTok Ads account, on posts from my account @funfactorstudio and from creators.
+
+Could you tell me:
+1. Do you work with developers based in Vietnam?
+2. Your fee: share of spend, minimum spend, setup fee?
+3. Which countries can you target?
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"evilborsh",name:"Evilborsh (Avtormedia)",wave:"w2",tier:"mid",dir:"ru",lang:"ru",
+ who:"Русский YouTube-обзорщик с взрослой мужской аудиторией, которая помнит фишки 90-х. Продаётся через агентство Avtormedia с открытым прайсом.",
+ audience:"119 тыс. подп.; медиана ≈99,5 тыс., прогноз агентства 150 тыс.; 98% мужчин, 25–44 лет",
+ contact:"evilborsh@avtormedia.ru",price:"Интеграция $1 050 (английский прайс); 65 000 ₽ + НДС 22%",basis:"прайс",
+ ask:["Актуален ли английский прайс $1 050 и ближайшие даты","Как автор относится к играм с ИИ"],
+ expect:"≈100 тыс. просмотров: 200–1 500 вишлистов, база ≈500; русский вишлист приносит примерно вдвое меньше американского",timing:"2–6 недель на выход, обязательно до 31.12",
+ notes:"Реклама на YouTube в России под тем же ограничением: публикация до 31.12.",
+ letter:{custom:{ru:{subj:"Вопрос о цене интеграции у Evilborsh: Mortal Caps, бесплатное демо в Steam",body:`Здравствуйте!
+
+Я Иван, соло-разработчик, делаю Mortal Caps. Это инкременталка про коллекционные фишки 90-х: бьёшь по стопке, каждая фишка лицом вверх приносит монеты, а в коллекции 216 гротескных фишек. Бесплатное демо выйдет в Steam в начале декабря, точная дата зависит от проверки Valve.
+
+Хотел узнать про интеграцию у Evilborsh: в английском прайсе видел $1 050. Подскажите, пожалуйста:
+1. актуальна ли эта цена;
+2. какие даты выхода свободны в декабре;
+3. как автор относится к играм, где использовался ИИ.
+
+Если у вас есть цена для маленьких инди-разработчиков, буду рад её услышать.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Пресс-кит: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Спасибо,
+Иван`}}}},
+{id:"duches",name:"Дюшес Games (Avtormedia)",wave:"w2",tier:"mid",dir:"ru",lang:"ru",
+ who:"Крупный развлекательный YouTube-канал; второй слот в ролике дешевле основной интеграции.",
+ audience:"980 тыс. подп.; медиана ≈236 тыс., прогноз агентства 180 тыс.; 75% мужчин",
+ contact:"duches@avtormedia.ru",price:"Второй слот $1 450 (английский прайс), интеграция $2 050; в рублях плюс НДС 22%",basis:"прайс",
+ ask:["Актуален ли прайс, ближайшие даты","Отношение к играм с ИИ"],
+ expect:"Второй слот в ролике на ≈180–236 тыс.: 360–3 500 вишлистов, реально ближе к нижней границе",timing:"2–6 недель, до 31.12",
+ notes:"Канал развлекательный, жанр не инкрементальный. Резервный адрес агентства: reklama@avtormedia.ru.",
+ letter:{custom:{ru:{subj:"Вопрос о цене второго слота у Дюшес Games: Mortal Caps, бесплатное демо в Steam",body:`Здравствуйте!
+
+Я Иван, соло-разработчик, делаю Mortal Caps. Это инкременталка про коллекционные фишки 90-х: бьёшь по стопке, каждая фишка лицом вверх приносит монеты, а в коллекции 216 гротескных фишек. Бесплатное демо выйдет в Steam в начале декабря, точная дата зависит от проверки Valve.
+
+Хотел узнать про второй слот у Дюшес Games: в английском прайсе видел $1 450. Подскажите, пожалуйста:
+1. актуальна ли эта цена;
+2. какие даты выхода свободны в декабре;
+3. как автор относится к играм, где использовался ИИ.
+
+Если у вас есть цена для маленьких инди-разработчиков, буду рад её услышать.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Пресс-кит: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Спасибо,
+Иван`}}}},
+{id:"smerch",name:"СМЕРЧ",wave:"w2",tier:"mid",dir:"ru",lang:"ru",
+ who:"Микроканал «прохожу на 100%»: хоррор-инкременталка у него набрала 148 тыс. Лучшее попадание в жанр среди русских.",
+ audience:"Медиана ≈16 тыс. при 2,9–7,9 тыс. подп.",contact:"@SmerchPRbot",price:"$116–289",basis:"оценка",
+ ask:["Цена отдельного ролика по демо","Срок выхода"],
+ expect:"32–240 вишлистов",timing:"3–14 дней, часть может успеть к демо",
+ notes:"Сначала можно предложить бесплатный ключ; платим, если не возьмёт бесплатно.",
+ letter:{where:"Сообщение в Telegram-бот, тема не нужна.",formats:{ru:RU100}}},
+{id:"kishka",name:"кишка",wave:"w2",tier:"mid",dir:"ru",lang:"ru",
+ who:"Микроканал про инкременталки «на 100%»; снимал Crack The Pack (16 тыс.).",
+ audience:"Медиана ≈24,5 тыс.",contact:"@kishkaadv",contactNote:"Также бот @Kishka47Bot",price:"$177–443",basis:"оценка",
+ ask:["Цена отдельного ролика по демо","Срок выхода"],
+ expect:"49–370 вишлистов",timing:"3–14 дней",
+ letter:{where:"Сообщение в Telegram, тема не нужна.",formats:{ru:RU100}}},
+{id:"shagon",name:"шагон",wave:"w2",tier:"mid",dir:"ru",lang:"ru",
+ who:"Микроканал «на 100%» из той же группы, что СМЕРЧ и кишка.",
+ audience:"Медиана ≈14,5 тыс.",contact:"alesha282828282882@gmail.com",price:"$105–262",basis:"оценка",
+ ask:["Цена отдельного ролика по демо","Срок выхода"],
+ expect:"29–220 вишлистов",timing:"3–14 дней",
+ letter:{formats:{ru:RU100}}},
+{id:"felps",name:"Felps",wave:"w2",tier:"mid",dir:"eu_latam",lang:"pt",
+ who:"Бразильский YouTube-автор: часто играет странные игры про апгрейды, копание и уборку.",
+ audience:"2,87 млн подп.; медиана ≈45,5 тыс.",contact:"https://www.youtube.com/@felps/about",contactNote:"Почта скрыта за капчей YouTube: кнопка «Показать адрес» на странице канала",
+ price:"$455–1 138; в программе $800",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты"],
+ expect:"91–680 вишлистов (2–15 на 1 000), база ≈230",timing:"2–6 недель",
+ anti:true,notes:"У него ролик «thumbnail de IA» на 213 тыс.: позицию по ИИ проверить до письма.",
+ letter:{formats:{pt:PT_F,en:YT_EN}}},
+{id:"pandorya",name:"Pandorya",wave:"w2",tier:"mid",dir:"eu_latam",lang:"de",
+ who:"Немецкий YouTube: прологи, демо и симуляторы.",
+ audience:"526 тыс. подп.; медиана ≈14 тыс.",contact:"https://1up.management/impressum",contactNote:"Менеджмент 1up.management, адрес на их сайте",
+ price:"$140–350; в программе $600 на двоих с Dhalucard",basis:"оценка",
+ ask:["Цена спонсорской серии по демо","Даты"],
+ expect:"28–210 вишлистов",timing:"2–4 недели",
+ letter:{formats:{de:DE_F,en:YT_EN}}},
+{id:"dhalucard",name:"Dhalucard",wave:"w2",tier:"mid",dir:"eu_latam",lang:"de",
+ who:"Немецкий YouTube с большим количеством инди.",
+ audience:"474 тыс. подп.; медиана ≈19 тыс.",contact:"https://www.youtube.com/@Dhalucard/about",contactNote:"Почта скрыта за капчей YouTube",
+ price:"$190–475",basis:"оценка",
+ ask:["Цена спонсорской серии по демо","Даты"],
+ expect:"38–285 вишлистов",timing:"2–4 недели",
+ letter:{formats:{de:DE_F,en:YT_EN}}},
+{id:"krayn",name:"Krayn",wave:"w2",tier:"mid",dir:"eu_latam",lang:"fr",
+ who:"Французский автор, постоянно показывает инди и «first look».",
+ audience:"95 тыс. подп.; медиана ≈6 тыс.; основная сила на Twitch",contact:"https://discord.gg/bvWFWq8",contactNote:"Почты нет. Twitch krayn_live, Discord канала",
+ price:"$60–149, минимальный гонорар может быть выше; в программе $450 на двоих с Bill Silverlight",basis:"оценка",
+ ask:["Цена first look по демо на YouTube или стриме","Даты"],
+ expect:"12–90 вишлистов",timing:"2–4 недели",
+ notes:"Во Франции действует закон о пометке «images virtuelles»: уточнить, как помечать.",
+ letter:{formats:{fr:FR_F,en:YT_EN}}},
+{id:"billsilverlight",name:"Bill Silverlight",wave:"w2",tier:"mid",dir:"eu_latam",lang:"fr",
+ who:"Французский YouTube: симуляторы, магазины, творческие игры.",
+ audience:"275 тыс. подп.; медиана ≈19,5 тыс.",contact:"contact@languagecraft.tv",
+ price:"$195–488",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты"],
+ expect:"39–290 вишлистов",timing:"2–4 недели",
+ letter:{formats:{fr:FR_F,en:YT_EN}}},
+{id:"indiewolverine",name:"Indie Wolverine: консультация",wave:"w2",tier:"mid",dir:"press",kind:"service",lang:"en",
+ who:"Консультант по Steam-странице, вишлистам и работе с авторами; сессии записываются.",
+ audience:"Среди клиентов называет Daedalic и Unknown Worlds",
+ contact:"https://indiewolverine.com/consultation/",price:"$200 в час; 3 часа — $600",basis:"прайс",
+ ask:["Ближайшие даты в декабре","Можно ли разбить на 3 сессии по часу"],
+ expect:"Вишлистов напрямую не даёт: польза в странице и плане к Next Fest",timing:"Декабрь, до регистрации на Next Fest 10 января",
+ letter:{custom:{en:{subj:"Price of a consultation before Steam Next Fest: Mortal Caps",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I plan the demo launch in early December and Steam Next Fest in February 2027. I'm considering about 3 hours of recorded consultation on the store page, the demo launch and the wishlist plan for the festival, and would like to know your price and which dates you have in December.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"gameifyouare",name:"Game If You Are: Indie Friendly Initiative",wave:"w2",tier:"mid",dir:"press",kind:"service",lang:"en",
+ who:"PR-пакет: шаблоны, список прессы, а в Advanced — написанный и разосланный релиз.",
+ audience:"В списке издания вроде PC Gamer и GameSpot; результатов не публикуют",
+ contact:"https://www.gameifyouare.com/indie-friendly-initiative",price:"Advanced £1 000 ($1 330)",basis:"прайс",
+ ask:["Можно ли приурочить рассылку к пресс-показу Next Fest 11 февраля","Сроки подготовки","Принимают ли игру с раскрытием ИИ"],
+ expect:"Связь PR-пакетов с вишлистами нигде не измерена",timing:"Релиз к 11 февраля",
+ notes:"Альтернатива — Terminals Villager за $2 000: выбрать того, кто письменно ответит про ИИ.",
+ letter:{custom:{en:{subj:"Price of the Indie Friendly Initiative, Advanced: Mortal Caps for Steam Next Fest",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'd like to know the price of the Advanced package of the Indie Friendly Initiative and whether a mailshot timed to the Steam Next Fest press preview on 11 February 2027 is possible. Could you tell me:
+1. The current price of the Advanced package
+2. Whether that timing is possible, and how much lead time you need
+3. Which outlets the mailshot reaches
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+
+/* ---------------- ПОСЛЕ ДЕМО: БЕСПЛАТНЫЙ КЛЮЧ УЖЕ У НИХ ---------------- */
+{id:"idlecub",name:"Idle cub",wave:"wait",tier:"min",dir:"youtube",lang:"en",
+ who:"Главный YouTube-автор инкременталок, ролик почти каждый день; единственный специалист жанра с недавней рекламой игры.",
+ audience:"199 тыс. подп.; медиана 166 тыс.; рекламный ролик Warhammer Survivors 116 тыс.",
+ contact:"https://www.youtube.com/@idlecub/about",contactNote:"Почта за капчей YouTube; запасной путь — Discord discord.gg/67Nu6Aa22S, только личка",
+ price:"$1 660–4 150; в минимуме $1 700, в средней $2 500",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена отдельного ролика и даты до 16 декабря"],
+ expect:"330–2 490 вишлистов, база ≈830",timing:"Предложение не раньше демо + 7 дней, выход до 16 декабря",
+ letter:{formats:{en:YT_EN}}},
+{id:"interndotgif",name:"InterndotGif",wave:"wait",tier:"mid",dir:"youtube",lang:"en",
+ who:"Берёт демо; Booster Packs у него 77 тыс., Scratch Tickets 593 тыс. Спонсорство через Screenwave.",
+ audience:"447 тыс. подп.; спонсорские 10–43 тыс.",contact:"interndotgif@screenwavemedia.com",
+ price:"$300–750; в программе $500",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена отдельного ролика"],
+ expect:"≈30 тыс. просмотров: 60–450 вишлистов",timing:"Демо + 7 дней",
+ notes:"Агентский адрес только для платного предложения; бесплатный ключ уходил на личную почту.",
+ letter:{formats:{en:YT_EN}}},
+{id:"morequis",name:"MOREQUIS",wave:"wait",tier:"max",dir:"youtube",lang:"en",
+ who:"Коллекции и монеты: Card Collection 209 тыс., Gambler's Table 135 тыс.",
+ audience:"66,5 тыс. подп.",contact:"morequis@screenwavemedia.com",price:"$510–1 270",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена ролика"],
+ expect:"≈51 тыс. просмотров: 100–770 вишлистов",timing:"Демо + 7 дней",
+ letter:{formats:{en:YT_EN}}},
+{id:"nifrin",name:"NiFRiN",wave:"wait",tier:"mid",dir:"ru",lang:"ru",
+ who:"Проходит на 100% именно демо; Find The Needle 142 тыс.",audience:"Медиана ≈15 тыс.",
+ contact:"NiFRiN@adloom.media",contactNote:"Рекламный адрес Adloom; бесплатный ключ уходил на личную почту",price:"$108–271",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена ролика"],expect:"30–225 вишлистов",timing:"Демо + 7 дней, до 31.12",
+ letter:{formats:{ru:RU100}}},
+{id:"mobik",name:"MOBIK",wave:"wait",tier:"mid",dir:"ru",lang:"ru",
+ who:"Берёт демо и проходит на 100%: DREADMOOR Demo 134 тыс., Eggstreme Farming Demo 195 тыс.",audience:"Медиана ≈32,5 тыс.",
+ contact:"mobikplaysiz@gmail.com",price:"$235–587",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена ролика"],expect:"65–490 вишлистов",timing:"Демо + 7 дней, до 31.12",
+ letter:{formats:{ru:RU100}}},
+{id:"stodnevka",name:"СТОДНЕВКА",wave:"wait",tier:"max",dir:"ru",lang:"ru",
+ who:"Рубрика «Я прошёл X на 100%»: One Million Coins 800 тыс., Digging a Hole 2,1 млн.",audience:"260 тыс. подп.",
+ contact:"stodnevka.channel@gmail.com",price:"Цены нет",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — цена ролика по полной игре или демо"],expect:"Сотни и тысячи вишлистов, если возьмёт; данных о цене нет",timing:"Демо + 7 дней, до 31.12",
+ letter:{formats:{ru:RU100}}},
+{id:"futsuunokuma",name:"ふつうのくま",wave:"wait",tier:"max",dir:"asia",lang:"ja",
+ who:"Японские марафоны idle в формате ゆっくり: Cookie Clicker 817 тыс., Revolution Idle 501 тыс.",audience:"118 тыс. подп.; медиана ≈205 тыс.",
+ contact:"meto.work631214@gmail.com",price:"¥2,05–6,15 млн ($12 900–38 600) по формуле; реальные цены инди обычно ниже",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — смета на ролик"],expect:"1 025–3 075 вишлистов",timing:"Демо + 7 дней",
+ letter:{formats:{ja:JA_F}}},
+{id:"niguchannel",name:"ニグチャンネル",wave:"wait",tier:"max",dir:"asia",lang:"ja",
+ who:"Кликеры и инфляция; сам делает кликеры с ИИ, риск отказа минимальный.",audience:"459 тыс. подп.; медиана ≈156 тыс.",
+ contact:"niguchannel@gmail.com",price:"¥1,56–4,68 млн ($9 800–29 400) по формуле",basis:"оценка",
+ ask:["Через неделю после демо: снял ли бесплатно","Если нет — смета на ролик"],expect:"780–2 340 вишлистов",timing:"Демо + 7 дней",
+ letter:{formats:{ja:JA_F}}},
+
+/* ---------------- ВОЛНА 3: МАКСИМУМ ---------------- */
+{id:"imcade",name:"ImCade (Screenwave)",hello:"ImCade team",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Снимал Crack the Pack (425 тыс.) и One Million Coins (525 тыс.); регулярные спонсорские ролики инди.",
+ audience:"1,19 млн подп.; спонсорские 57–195 тыс.",contact:"imcade@screenwavemedia.com",price:"$1 620–4 050",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты к Next Fest","Страны зрителей"],expect:"320–2 430 вишлистов, база ≈810",timing:"Перед Next Fest",
+ letter:{formats:{en:YT_EN}}},
+{id:"drae",name:"Drae (Screenwave)",hello:"Drae team",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Спонсорский ролик Gas N Cars (143 тыс.) вышел в день релиза.",audience:"2,62 млн подп.",
+ contact:"Drae@screenwavemedia.com",price:"$1 180–2 950",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты к Next Fest"],expect:"240–1 770 вишлистов, база ≈590",timing:"Перед Next Fest",
+ letter:{formats:{en:YT_EN}}},
+{id:"aliensrock",name:"Aliensrock",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Головоломки и стратегии; снимал Cursed Words на стадии демо и в день выхода.",audience:"810 тыс. подп.; спонсорские 84 и 160 тыс.",
+ contact:"https://www.youtube.com/@Aliensrock/about",contactNote:"Почта за капчей YouTube",price:"$1 220–3 050",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты"],expect:"240–1 830 вишлистов, база ≈610",timing:"Перед Next Fest",
+ letter:{formats:{en:YT_EN}}},
+{id:"waligug",name:"Waligug",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Снимал Digging A Hole (4,7 млн), Probably Stolen, Idle Slayer.",audience:"878 тыс. подп.; спонсорские 114 и 279 тыс.",
+ contact:"waligug@intheblackmedia.com",price:"$2 250–5 620",basis:"оценка",
+ ask:["Цена ролика или вставки","Даты"],expect:"450–3 370 вишлистов, база ≈1 125",timing:"Перед Next Fest",
+ letter:{formats:{en:YT_EN}}},
+{id:"skoottie",name:"Skoottie",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Рубрика «I Played 100%»: вставка в ролик об инкременталке попадает точно в аудиторию.",audience:"439 тыс. подп.; вставки 232–459 тыс.",
+ contact:"skoottie@clovertalent.gg",price:"$3 470–8 680",basis:"оценка",
+ ask:["Цена вставки","Даты"],expect:"Вставка слабее ролика: ≈700–2 000 вишлистов",timing:"Перед Next Fest",
+ notes:"Спонсоры у него в основном не игры: проверенного примера с инди нет.",
+ letter:{formats:{en:["a 60–90 second integration in an «I Played 100%» video","a dedicated video about the demo"]}}},
+{id:"floydsonson",name:"Floydsonson",wave:"w3",tier:"max",dir:"youtube",lang:"en",
+ who:"Сам снимал Bills Must Be Paid (820 тыс.) и Nodebuster (381 тыс.); вставка Idle Slayer в ролик на 2,7 млн.",audience:"222 тыс. подп.; медиана 786 тыс.",
+ contact:"floydson@intheblackmedia.com",price:"$7 860–19 640",basis:"оценка",
+ ask:["Цена ролика или вставки","Даты"],expect:"1 570–11 800 вишлистов, база ≈3 900",timing:"Перед Next Fest",
+ notes:"Самая высокая цена при самой низкой уверенности в отдаче.",
+ letter:{formats:{en:YT_EN}}},
+{id:"daredrop",name:"Dare Drop",wave:"w3",tier:"max",dir:"youtube",kind:"platform",lang:"en",
+ who:"Кампании с авторами на Twitch, YouTube и TikTok; у Wandering Village было 123 автора.",audience:"Данные площадки, вишлисты не раскрыты",
+ contact:"https://www.daredrop.com/for-publishers",price:"$3 000 органическая; от $5 000 с гарантией результата",basis:"прайс",
+ ask:["Что входит в $3 000 и чем отличается вариант за $5 000","Страны и авторы","Отношение к ИИ","Отчёт"],expect:"Вишлисты в кейсах не раскрыты",timing:"Перед Next Fest",
+ letter:{custom:{en:{subj:"Prices for a creator campaign before Steam Next Fest: Mortal Caps",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review.
+
+I'm looking at a Dare Drop campaign before Steam Next Fest in February 2027. Could you tell me:
+1. What the $3,000 organic campaign includes, and how it differs from the guaranteed option?
+2. Which creators and countries I can expect?
+3. How far ahead a campaign needs to be set up for February?
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"skuma",name:"СКУМА",wave:"w3",tier:"max",dir:"ru",lang:"ru",
+ who:"Русский YouTube: CloverPit на 100% (409 тыс.), игры про яму (283 тыс.) — жанровое попадание.",audience:"144 тыс. подп.; медиана ≈230 тыс.",
+ contact:"Kryshnovv@gmail.com",price:"$1 663–4 157",basis:"оценка",
+ ask:["Цена интеграции и отдельного ролика","Даты до 31.12"],expect:"460–3 450 вишлистов",timing:"До 31.12",
+ notes:"Выходит редко: срок 3–8 недель, к 31.12 может не успеть.",letter:{formats:{ru:YT_RU}}},
+{id:"evot",name:"Эвот",wave:"w3",tier:"max",dir:"ru",lang:"ru",
+ who:"Русский YouTube: интеграции и ролики «на 100%».",audience:"141 тыс. подп.; медиана ≈126 тыс.",
+ contact:"m3chthai2@gmail.com",price:"$911–2 277",basis:"оценка",
+ ask:["Цена интеграции","Даты до 31.12"],expect:"250–1 890 вишлистов",timing:"До 31.12",
+ letter:{formats:{ru:YT_RU}}},
+{id:"oldvidik",name:"Старый Видик",wave:"w3",tier:"max",dir:"ru",lang:"ru",
+ who:"Разборы мультфильмов и фильмов 90-х: зритель помнит и фишки с битой из тех же лет. Взрослая аудитория, ИИ-арт может раздражать.",
+ audience:"Медиана ≈47 тыс.; «Рикки-Тикки-Тави» 313 тыс., «Роботы» 495 тыс.",
+ contact:"harrywizard89@gmail.com",price:"$340–849",basis:"оценка",
+ ask:["Цена интеграции «фишки из детства»","Даты до 31.12"],expect:"95–700 вишлистов",timing:"До 31.12",
+ letter:{formats:{ru:["интеграция «фишки из детства» в ролик","отдельный ролик про игру"]}}},
+{id:"vspominashka",name:"Вспоминашка",wave:"w3",tier:"max",dir:"ru",lang:"ru",
+ who:"Старые игры «глазами олда и новичка в 2026 году»: Diablo 2 — 667 тыс., Санитары Подземелий — 233 тыс. Ностальгия по играм 90-х и 2000-х.",
+ audience:"Медиана ≈120 тыс.",
+ contact:"https://t.me/vspominash",contactNote:"Telegram",price:"$871–2 178",basis:"оценка",
+ ask:["Цена интеграции","Даты до 31.12"],expect:"240–1 800 вишлистов",timing:"До 31.12",
+ notes:"У Санчес ностальгии есть ролик про фишки и биту (334 тыс.), но контакт не найден.",
+ letter:{where:"Сообщение в Telegram: тему не вставлять.",formats:{ru:["интеграция в ролик","отдельный ролик про игру"]}}},
+{id:"alexelcapo",name:"alexelcapo",wave:"w3",tier:"max",dir:"eu_latam",lang:"es",
+ who:"Испанский YouTube; «EL INCREMENTAL DE LA BASURA» набрал 276 тыс. Лучший адресат в Испании.",
+ audience:"1,85 млн подп.; медиана ≈233 тыс.",contact:"https://www.youtube.com/@alexelcapo/about",contactNote:"Публичной почты нет; кнопка «Показать адрес» за капчей YouTube",
+ price:"$2 330–5 825; в максимуме $4 000",basis:"оценка",
+ ask:["Цена спонсорского ролика по демо","Даты","Отношение к играм с ИИ"],expect:"470–3 500 вишлистов, база ≈1 165",timing:"Только после проверки демо на других рынках",
+ notes:"Перед письмом посмотреть его последние высказывания про ИИ.",
+ letter:{formats:{es:ES_F,en:YT_EN}}},
+{id:"zerator",name:"ZeratoR",wave:"w3",tier:"max",dir:"eu_latam",lang:"fr",
+ who:"Крупный французский автор, основная сила на Twitch.",audience:"1 млн подп. YouTube; медиана ≈149 тыс.",
+ contact:"ZeratoRContact@gmail.com",price:"$1 490–3 725",basis:"оценка",
+ ask:["Цена спонсорской игры на стриме или ролика","Даты"],expect:"300–2 240 вишлистов",timing:"Перед Next Fest",
+ notes:"Отвечает редко (оценка исследования).",letter:{formats:{fr:FR_F,en:YT_EN}}},
+{id:"gamerstime",name:"Gamerstime",wave:"w3",tier:"max",dir:"eu_latam",lang:"de",
+ who:"Немецкий YouTube с большим охватом; жанр не подтверждён.",audience:"502 тыс. подп.; медиана ≈102 тыс.",
+ contact:"Management@Gamerstime.tv",price:"$1 020–2 550",basis:"оценка",
+ ask:["Цена спонсорского ролика","Даты"],expect:"200–1 530 вишлистов",timing:"Перед Next Fest",notes:"На 19.11 канал снимает обзоры еды, игр в последних 16 роликах нет: писать, только если нужен охват любой ценой.",
+ letter:{formats:{de:DE_F,en:YT_EN}}},
+{id:"domtendo",name:"Domtendo",wave:"w3",tier:"max",dir:"eu_latam",lang:"de",
+ who:"Немецкий YouTube с большим охватом; жанр не подтверждён.",audience:"1,63 млн подп.; медиана ≈98 тыс.",
+ contact:"domtendo@ciberdime.com",price:"$980–2 450",basis:"оценка",
+ ask:["Цена спонсорского ролика","Даты"],expect:"200–1 470 вишлистов",timing:"Перед Next Fest",notes:"На 19.11 идёт длинный Let's Play Zelda, инди в последних роликах нет.",
+ letter:{formats:{de:DE_F,en:YT_EN}}},
+{id:"yamachannel",name:"やまチャンネル",wave:"w3",tier:"max",dir:"asia",lang:"ja",
+ who:"Подборки демо Next Fest — лучший формат под февраль.",audience:"44 тыс. подп.; медиана ≈38 тыс.",
+ contact:"yamachannel0018@gmail.com",price:"¥380 тыс.–1,14 млн ($2 380–7 150) по формуле",basis:"оценка",
+ ask:["Цена места в подборке Next Fest","Даты"],expect:"190–570 вишлистов",timing:"Next Fest",
+ letter:{formats:{ja:["Steamネクストフェスのおすすめ体験版紹介動画への掲載","単独紹介動画"]}}},
+{id:"zunlabo",name:"ずんラボ",wave:"w3",tier:"max",dir:"asia",lang:"ja",
+ who:"Только инкременталки; к ИИ открыт (сам делал ролик с Gemini).",audience:"14,8 тыс. подп.; медиана ≈35 тыс.",
+ contact:"https://www.youtube.com/@zun-labo/about",contactNote:"Бизнес-почта скрыта за логином YouTube",price:"¥350 тыс.–1,05 млн ($2 200–6 600) по формуле",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты"],expect:"175–525 вишлистов",timing:"Next Fest",letter:{formats:{ja:JA_F}}},
+{id:"shinjisan",name:"しんじさん",hello:"しんじ",wave:"w3",tier:"max",dir:"asia",lang:"ja",
+ who:"Часто берёт новые инкременталки.",audience:"164 тыс. подп.; медиана ≈46 тыс.",
+ contact:"https://www.youtube.com/@しんじさん/about",contactNote:"Бизнес-почта скрыта за логином YouTube; X @Shinjisan_XD",price:"¥460 тыс.–1,38 млн ($2 900–8 700) по формуле",basis:"оценка",
+ ask:["Цена отдельного ролика","Даты"],expect:"230–690 вишлистов",timing:"Next Fest",letter:{formats:{ja:JA_F}}},
+{id:"huqiao",name:"Huqiao Games (Китай)",wave:"w3",tier:"max",dir:"asia",kind:"agency",lang:"en",
+ who:"Агентство для выхода в Китай: блогеры Bilibili, Douyin, Huya, медиа и Heybox. Китай возможен только через такого партнёра.",
+ audience:"Кейсы агентства: Havendock +14 690 вишлистов, Above Snakes +4 000 за 2 дня",
+ contact:"https://www.huqiaogames.com",contactNote:"Форма на сайте, цены только на звонке",price:"5–8 малых и средних блогеров: 60–100 тыс. юаней ($9 000–15 000) + комиссия",basis:"оценка",
+ ask:["Смета на 5–8 блогеров к Next Fest","Нужен ли ISBN или лицензия для платной кампании","Отношение к раскрытию ИИ","Китайский язык в игре есть (упрощённый)"],
+ expect:"По кейсам агентства тысячи вишлистов; цифры агентства не проверены",timing:"Подготовка около 3 недель, к Next Fest",
+ notes:"Перед суммой — юридическая проверка: Bilibili и Douyin требуют местной лицензии.",
+ letter:{custom:{en:{subj:"Estimate for a China creator campaign before Steam Next Fest: Mortal Caps",body:`Hi,
+
+I'm Ivan, a solo indie developer making Mortal Caps. It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. The free Steam demo launches in early December; the exact date depends on Valve's review. The game is localized into Simplified Chinese.
+
+I'd like an estimate for a campaign with 5–8 small and mid-size Bilibili and Douyin creators before Steam Next Fest in February 2027. Could you tell me:
+1. The estimate and your fee
+2. Whether a paid campaign needs an ISBN or any other license for a Steam demo
+3. How much lead time you need before February
+
+If you have a rate for small indie developers, I'd be glad to hear it.
+
+{AIP}Steam: https://store.steampowered.com/app/5495840/Mortal_Caps/
+Press kit: https://illum1nat34.github.io/mortalcaps-presskit/
+
+Thanks,
+Ivan`}}}},
+{id:"prtimes",name:"PR TIMES",wave:"w3",tier:"max",dir:"asia",kind:"platform",lang:"ja",
+ who:"Японская рассылка пресс-релизов; релизы видны на партнёрских сайтах вроде inside-games.",audience:"База 10 900+ СМИ (данные сервиса)",
+ contact:"https://prtimes.jp",price:"¥30 000 ($188) за релиз; написание ¥50 000 ($314)",basis:"прайс",
+ steps:["Зарегистрировать компанию (проверка около 1 рабочего дня)","Японский текст релиза отдать на вычитку","Отправка в день демо"],
+ expect:"Данных по играм нет",timing:"День демо, если регистрацию примут"},
+{id:"metaads",name:"Meta Ads (Facebook, Instagram)",wave:"w3",tier:"max",dir:"ads",kind:"ads",
+ who:"Реклама Reels и Partnership Ads поверх роликов авторов. Reels у наших авторов сильнее TikTok.",
+ contact:"https://adsmanager.facebook.com",price:"В максимуме $6 000",basis:"наш бюджет",
+ steps:["Проверить ограничение рекламы на личном Facebook","Если снято — тест Partnership Ads на лучшем ролике автора"],
+ expect:"Кейсов с вишлистами нет; рынок называет $0,30–3 при хорошей настройке",timing:"Январь, при снятом ограничении"},
+{id:"vkads",name:"VK Реклама",wave:"w3",tier:"max",dir:"ru",kind:"ads",lang:"ru",
+ who:"Таргет в VK, VK Видео и MAX.",audience:"VK Видео 42 млн в день",
+ contact:"https://ads.vk.com",price:"Минимум для иностранных клиентов $10; возможен НДС 22%; в максимуме $1 000",basis:"наш бюджет",
+ steps:["Открыть кабинет как иностранный клиент","Проверить оплату и маркировку","Тест в декабре, до 31.12"],
+ expect:"CPM игр не известен",timing:"Декабрь"}
+];
+const WAIT_OTHERS="Dex, Azrilich, Sonoket, Kaiffu, Northernlion, JonnyBebop, CG Grows, Nerfed Reflexes, Idle Gamer, Obsidian Time, 游戏好声音, 中国鉴赏家同好会";
+
+/* Personal opening line for each creator letter: a real video of theirs, checked 19.11.2026 */
+const PL={
+imjustjarrod:{en:"Your shorts for Erosion and Beastro passed a million views each, and that indie-showcase format is exactly where I'd like Mortal Caps to appear."},
+jayify:{en:"Your One Million Coins TikTok got about 700K views, and Mortal Caps lives in the same corner: coins, upgrades and a collection that keeps growing."},
+agent:{en:"Your idle and clicker TikToks average about 35K views, and Mortal Caps is an incremental built around one satisfying slam."},
+grizzbx:{en:"Your #incrementalgame post got almost 300K views, and Mortal Caps is an incremental too, built around one big satisfying slam."},
+andyslaps:{en:"Your Abyssal Lapidary short reached 575K views with one simple, satisfying action, and Mortal Caps is built the same way: one slam that keeps paying off."},
+shadesofnate:{en:"Your IRON NEST post hit 4.5M views, and your audience clearly enjoys watching production and numbers grow, which is the core of Mortal Caps."},
+blitz:{en:"Your Gas N Cars video did over 115K views on launch day, and Mortal Caps has the same kind of hook: one physical action you want to repeat."},
+idreamofindie:{en:"Your compilations give small demos a proper look, and I'd love Mortal Caps to be in one."},
+smerch:{ru:"Ваш ролик «Я Прошёл Artillery Miner на 100% Взорвав ВСЁ» набрал 65 тыс., а в Mortal Caps тоже всё держится на взрыве: бьёшь по стопке, и она разлетается."},
+kishka:{ru:"Ваш ролик про Crack The Pack — ровно наша ниша: в Mortal Caps тоже паки, коллекция и монеты."},
+shagon:{ru:"Ваша серия «Ты не уснёшь, пока…» с Chef Knight и Rock Bottom на 100% как раз про такие игры, как Mortal Caps."},
+felps:{pt:"Seus vídeos de jogos pequenos e esquisitos, como o do arroz frito e o simulador de motoboy, são o lugar certo para um jogo sobre bater em tazos grotescos.",
+       en:"Your videos of small, odd games, like the fried rice one and the delivery-bike simulator, feel like the right home for a game about slamming grotesque caps."},
+pandorya:{de:"Deine Prolog-Folgen wie Market Moe zeigen, dass du gern Demos ausprobierst, und Mortal Caps hat genau so eine kostenlose Demo.",
+          en:"Your prologue episodes like Market Moe show you enjoy trying demos, and Mortal Caps has exactly that kind of free demo."},
+dhalucard:{de:"Deine Videos zu kleinen Indies wie Murdoku und Dupery passen gut zu Mortal Caps: ein kleines Spiel mit einer einfachen Idee, die süchtig macht.",
+           en:"Your videos on small indies like Murdoku and Dupery are a good match for Mortal Caps: a small game built on one simple, addictive idea."},
+krayn:{fr:"Tes vidéos Découverte, comme celles sur Probably Stolen et Near Mint, sont exactement le format que j'imagine pour la démo de Mortal Caps.",
+       en:"Your Découverte videos, like the ones on Probably Stolen and Near Mint, are exactly the format I have in mind for the Mortal Caps demo."},
+billsilverlight:{fr:"Tu montres souvent des jeux de gestion et de boutique comme Planet Zoo 2 ; Mortal Caps est plus petit, mais on y fait aussi grandir une collection et des chiffres.",
+                 en:"You often show management and shop games like Planet Zoo 2; Mortal Caps is smaller, but it is also about growing a collection and the numbers behind it."},
+idlecub:{en:"Your BOOSTER PACKS video did 584K views, and in November I sent you an early key for Mortal Caps."},
+interndotgif:{en:"You covered Archi Vista while it was still a demo, and your Scratch Tickets video did 593K. In November I sent you an early key for Mortal Caps."},
+morequis:{en:"Your Card Collection video did 209K, and Mortal Caps is all about collecting. In November I sent you an early key."},
+nifrin:{ru:"Ваш ролик по демо Find The Needle набрал 142 тыс. В ноябре я присылал вам ранний ключ от Mortal Caps."},
+mobik:{ru:"Ваши прохождения демо на 100%, например Eggstreme Farming Demo (195 тыс.), — ровно то, что нужно демо Mortal Caps. В ноябре я присылал вам ранний ключ."},
+stodnevka:{ru:"Ваш «One Million Coins на 100%» набрал 800 тыс., а Mortal Caps из той же ниши: монеты и коллекция. В ноябре я присылал вам ранний ключ."},
+futsuunokuma:{ja:"『700時間かけてクッキーを集めてみた』が81万回再生されているように、放置ゲームの長時間実況で人気のふつうのくま様にぜひご相談したく、ご連絡いたしました。11月に早期キーをお送りしております。"},
+niguchannel:{ja:"AIと作り直した自作クリッカーゲームの動画（19万回再生）など、クリッカーやインフレ系の動画で知られるニグチャンネル様にぜひご相談したく、ご連絡いたしました。11月に早期キーをお送りしております。"},
+imcade:{en:"You covered both Crack the Pack (425K) and One Million Coins (525K), and Mortal Caps sits right between them: packs, coins and a physical slam."},
+drae:{en:"Your sponsored Gas N Cars video did 143K on launch day, and I'd like to bring Mortal Caps to your audience the same way before Next Fest."},
+aliensrock:{en:"You covered Cursed Words both as a demo and at launch, and I'd like to try the same path with Mortal Caps."},
+waligug:{en:"Your Digging A Hole video passed 4.7M views, and Mortal Caps has the same kind of simple loop with numbers that keep growing."},
+skoottie:{en:"Your One Million Coins 100% video did 402K and Crack the Pack 238K, and Mortal Caps lives right between those two games."},
+floydsonson:{en:"You played Bills Must Be Paid (820K) and Nodebuster (381K), and Mortal Caps is an incremental of the same kind, with a physical slam at its core."},
+skuma:{ru:"Ваш CloverPit на 100% набрал 409 тыс., а Mortal Caps из той же породы: удар, монеты и коллекция."},
+evot:{ru:"Ваш «Я РЕАЛЬНО Прошел на 100% Достижений Инкрементальный Хоррор» вышел на днях, а Moon Sweepers на 100% набрал 586 тыс.; Mortal Caps — тоже инкременталка, с коллекцией и достижениями."},
+oldvidik:{ru:"Ваши разборы мультфильмов 90-х («Рикки-Тикки-Тави» набрал 313 тыс.) смотрят люди, которые помнят и фишки с битой из тех же лет."},
+vspominashka:{ru:"Ваш цикл «глазами олда в 2026 году» (Diablo 2 набрал 667 тыс.) — про ностальгию по играм, а Mortal Caps — про ностальгию по фишкам 90-х."},
+alexelcapo:{es:"Tu vídeo «EL INCREMENTAL DE LA BASURA» pasó de 276 mil visitas, y Mortal Caps es otro incremental, esta vez con tazos de los 90.",
+            en:"Your «EL INCREMENTAL DE LA BASURA» video passed 276K views, and Mortal Caps is another incremental, this time with '90s caps."},
+zerator:{fr:"Tes Best of ZeratoR font 130 à 170 000 vues chaque semaine, et Mortal Caps est fait pour ce genre de moment : un coup, et toute la pile explose.",
+         en:"Your Best of ZeratoR episodes get 130–170K views every week, and Mortal Caps is made for that kind of moment: one slam, and the whole stack explodes."},
+gamerstime:{de:"Ich sehe, dass auf deinem Kanal gerade vor allem Essen getestet wird. Falls Spiele bei dir auf einem anderen Kanal laufen, leite die Mail gern dorthin weiter.",
+            en:"I see your channel is mostly food tests right now. If games live on another channel of yours, please forward this there."},
+domtendo:{de:"Deine Ocarina-of-Time-Reihe holt fast 100.000 Aufrufe pro Folge, und ich würde Mortal Caps gern als kurze Abwechslung bei dir zeigen.",
+          en:"Your Ocarina of Time series gets close to 100K views per episode, and I'd like to bring Mortal Caps to your channel as a short change of pace."},
+yamachannel:{ja:"『【Steamネクストフェス】押さえておきたい名作候補！…36選』のような体験版紹介動画に、2月のネクストフェスでMortal Capsを加えていただけないかと思い、ご連絡いたしました。"},
+zunlabo:{ja:"『コールドロン(CAULDRON)』の50時間実況（8.3万回再生）のように、インクリメンタルゲームを専門に扱われているずんラボ様にぜひご相談したく、ご連絡いたしました。"},
+shinjisan:{ja:"『ただ穴を掘るだけのゲーム』の動画（18万回再生）のように、新しいインクリメンタルゲームを多く取り上げていらっしゃるしんじ様にぜひご相談したく、ご連絡いたしました。"}
+};
+
+</script>
+<script>
+(function(){
+const STATUSES=[["todo","Не написали"],["sent","Написали"],["replied","Ответили"],["quoted","Назвали цену"],["agreed","Договорились"],["declined","Отказ"],["hold","Ждём"]];
+const ST=Object.fromEntries(STATUSES);
+const DIRS={shorts:"Короткие ролики",youtube:"YouTube и Twitch",ads:"Реклама",ru:"Россия и СНГ",eu_latam:"Европа и Латинская Америка",asia:"Япония и Китай",press:"Каталоги и пресса"};
+const WAVES=[
+ ["w1","Волна 1","Программа минимум","Пишем сейчас: самые доступные размещения, цены собираем к 28 ноября."],
+ ["w2","Волна 2","Средняя программа","Тоже пишем сейчас: запрос цены ни к чему не обязывает, а ответы нужны до проверки 1 через 10–14 дней после демо."],
+ ["self","Кабинеты","Самообслуживание","Писем нет. Нужно открыть кабинет, посмотреть условия и страны, деньги не вносить до решения."],
+ ["wait","После демо","Уже получили бесплатный ключ","Деньги предлагаем не раньше чем через неделю после выхода демо и только если сами не сняли ролик."],
+ ["w3","Волна 3","Максимум","Цены для инвестора. Пишем после волн 1–2, бронируем, только если откроется максимум."]
+];
+const BUDGET={min:8000,mid:40000,max:200000};
+const TIERNAME={min:"Минимум",mid:"Средняя",max:"Максимум"};
+const TIERS_IN={min:["min","wait"],mid:["min","mid","wait"],max:["min","mid","max","wait"]};
+const LANGNAME={en:"EN",ru:"RU",ja:"JA",pt:"PT",de:"DE",es:"ES",fr:"FR",zh:"ZH"};
+const L={steam:"https://store.steampowered.com/app/5495840/Mortal_Caps/",itch:"https://illum1nat.itch.io/mortal-caps-demo",kit:"https://illum1nat34.github.io/mortalcaps-presskit/"};
+const AI_EN="Various visual assets and promotional materials for Mortal Caps were created with the assistance of generative AI tools.\nAll AI-generated content was reviewed, refined, and integrated by the developer to ensure consistency with the game's artistic direction and quality standards.";
+const AI_RU="Различные визуальные ассеты и рекламные материалы Mortal Caps созданы с помощью инструментов генеративного ИИ.\nВесь контент, созданный ИИ, проверен, доработан и встроен в игру разработчиком, чтобы соответствовать её художественному направлению и стандартам качества.";
+const AI={
+ en:`About AI, the Steam page says:\n"${AI_EN}"\nIf that is a problem for your channel, please tell me before we go further.\n\n`,
+ ru:`Про ИИ на странице Steam указано:\n«${AI_RU}»\nЕсли для вас это проблема, скажите сразу, до обсуждения деталей.\n\n`,
+ ja:`生成AIについて、Steamストアページには次のように記載しております（原文）：\n"${AI_EN}"\n問題がございましたら、事前にお知らせください。\n\n`,
+ pt:`Sobre IA, a página da Steam diz:\n"${AI_EN}"\nSe isso for um problema para o seu canal, me avise antes de seguirmos.\n\n`,
+ de:`Zum Thema KI steht auf der Steam-Seite:\n"${AI_EN}"\nFalls das für deinen Kanal ein Problem ist, sag mir bitte vorher Bescheid.\n\n`,
+ es:`Sobre la IA, la página de Steam dice:\n"${AI_EN}"\nSi eso es un problema para tu canal, avísame antes de seguir.\n\n`,
+ fr:`Concernant l'IA, la page Steam indique :\n"${AI_EN}"\nSi cela pose problème pour ta chaîne, dis-le-moi avant d'aller plus loin.\n\n`,
+ zh:`关于 AI，Steam 页面上写着：\n"${AI_EN}"\n如果这对你们有影响，请在继续之前告诉我。\n\n`
+};
+const AIP={
+ en:`About AI, the Steam page says:\n"${AI_EN}"\nPlease confirm that a game with this disclosure is accepted before we go further.\n\n`,
+ ru:`Про ИИ на странице Steam указано:\n«${AI_RU}»\nПодтвердите, пожалуйста, что игру с таким указанием можно размещать, до обсуждения деталей.\n\n`,
+ ja:`生成AIについて、Steamストアページには次のように記載しております（原文）：\n"${AI_EN}"\nこのような記載のあるタイトルでもお取り扱いいただけるか、事前にご確認いただけますと幸いです。\n\n`
+};
+const SOLO={
+ en:"I'm Ivan, a solo indie developer making Mortal Caps.",
+ ru:"Я Иван, соло-разработчик, делаю Mortal Caps.",
+ pt:"Sou o Ivan, desenvolvedor indie solo, e faço Mortal Caps sozinho.",
+ de:"Ich bin Ivan, Solo-Indie-Entwickler, und mache Mortal Caps allein.",
+ es:"Soy Ivan, desarrollador indie en solitario, y hago Mortal Caps yo solo.",
+ fr:"Je suis Ivan, développeur indé solo, et je fais Mortal Caps seul."
+};
+const RATE={
+ en:"If you have a rate for small indie developers, I'd be glad to hear it.",
+ ru:"Если у вас есть цена для маленьких инди-разработчиков, буду рад её услышать.",
+ ja:"個人開発のため予算が限られております。個人開発者向けの料金がございましたら、あわせてお知らせいただけますと幸いです。",
+ pt:"Se você tiver um valor para pequenos devs indie, adoraria saber.",
+ de:"Falls du einen Preis für kleine Indie-Entwickler hast, würde ich mich freuen, ihn zu hören.",
+ es:"Si tienes una tarifa para pequeños desarrolladores indie, me encantaría saberla.",
+ fr:"Si tu as un tarif pour les petits développeurs indés, je serais ravi de le connaître."
+};
+const PERSONAL={en:"[одна строка от себя про их конкретный ролик — впишите перед отправкой]",ru:"[одна строка от себя про конкретный ролик — впишите перед отправкой]",ja:"",pt:"[uma linha sua sobre um vídeo específico — впишите перед отправкой]",de:"[eine Zeile zu einem konkreten Video — впишите перед отправкой]",es:"[una línea sobre un vídeo concreto — впишите перед отправкой]",fr:"[une ligne sur une vidéo précise — впишите перед отправкой]"};
+function plb(d,l){const p=(typeof PL!=="undefined"&&PL[d.id]&&PL[d.id][l])||"";return p?p+"\n\n":""}
+const DEMO={en:["The free Steam demo comes out in early December.","The free Steam demo is out now."],ru:["Бесплатное демо выйдет в Steam в начале декабря.","Бесплатное демо уже вышло в Steam."],ja:["12月上旬にSteamで無料体験版を公開する予定です。","Steamで無料体験版を公開いたしました。"]};
+function demo(d,l){return DEMO[l][d.wave==="wait"?1:0]}
+function list(items){return items.map((x,i)=>`${i+1}. ${x}`).join("\n")}
+const CREATOR={
+ en:(d,f,ai)=>({subj:"Rates for a sponsored video: Mortal Caps (free Steam demo)",body:
+`Hi ${d.hello||d.name},
+
+${plb(d,"en")}${SOLO.en} It's an incremental game about the collectible caps of the '90s. You slam a stack, every cap that lands face-up pays out, and you collect 216 grotesque caps. ${demo(d,"en")}
+
+Could you tell me your rates and which dates you have available for:
+${list(f)}
+
+${RATE.en}
+
+${ai?AI.en:""}Steam: ${L.steam}
+Press kit: ${L.kit}
+
+Thanks,
+Ivan`}),
+ ru:(d,f,ai)=>({subj:"Вопрос о цене рекламы: Mortal Caps (бесплатное демо в Steam)",body:
+`Здравствуйте, ${d.hello||d.name}!
+
+${plb(d,"ru")}${SOLO.ru} Это инкременталка про коллекционные фишки 90-х: бьёшь по стопке, каждая фишка лицом вверх приносит монеты, а в коллекции 216 гротескных фишек. ${demo(d,"ru")}
+
+Подскажите, пожалуйста, сколько это стоит и какие даты свободны:
+${list(f)}
+
+${RATE.ru}
+
+${ai?AI.ru:""}Steam: ${L.steam}
+Пресс-кит: ${L.kit}
+
+Спасибо,
+Иван`}),
+ ja:(d,f,ai)=>({subj:"有償動画プロモーションの料金に関するお問い合わせ（Steam無料体験版：Mortal Caps）",body:
+`${d.hello||d.name} 様
+
+突然のご連絡失礼いたします。インクリメンタルゲーム「Mortal Caps」を一人で開発しているインディー開発者、Ivanと申します。90年代のコレクションキャップ（メンコのようなもの）を題材にしたゲームで、積み上げたキャップを叩き、表になったキャップがコインを生み、216種類の奇妙なキャップを集めていきます。
+
+${plb(d,"ja")}${demo(d,"ja")}
+有償の動画プロモーションについて、以下の料金の目安と最短の公開可能日を教えていただけますでしょうか。
+${list(f)}
+
+${RATE.ja}
+
+${ai?AI.ja:""}Steam: ${L.steam}
+プレスキット: ${L.kit}
+
+よろしくお願いいたします。
+Ivan`}),
+ pt:(d,f,ai)=>({subj:"Valores de vídeo patrocinado: Mortal Caps (demo gratuita na Steam)",body:
+`Oi, ${d.hello||d.name}!
+
+${plb(d,"pt")}${SOLO.pt} É um jogo incremental sobre os tazos colecionáveis dos anos 90. Você bate numa pilha, cada tazo que cai virado para cima paga moedas, e você coleciona 216 tazos grotescos. A demo gratuita sai na Steam no início de dezembro.
+
+Você poderia me passar valores e as datas mais próximas para:
+${list(f)}
+
+${RATE.pt}
+
+${ai?AI.pt:""}Steam: ${L.steam}
+Press kit: ${L.kit}
+
+Obrigado,
+Ivan`}),
+ de:(d,f,ai)=>({subj:"Preise für ein gesponsertes Video: Mortal Caps (kostenlose Steam-Demo)",body:
+`Hallo ${d.hello||d.name},
+
+${plb(d,"de")}${SOLO.de} Es ist ein Incremental-Spiel über die Sammel-Caps (Pogs) der 90er. Du schlägst auf einen Stapel, jedes Cap, das mit dem Bild nach oben landet, bringt Münzen, und du sammelst 216 groteske Caps. Die kostenlose Steam-Demo erscheint Anfang Dezember.
+
+Kannst du mir Preise und die frühesten Termine nennen für:
+${list(f)}
+
+${RATE.de}
+
+${ai?AI.de:""}Steam: ${L.steam}
+Pressekit: ${L.kit}
+
+Danke und viele Grüße,
+Ivan`}),
+ es:(d,f,ai)=>({subj:"Tarifas de vídeo patrocinado: Mortal Caps (demo gratuita en Steam)",body:
+`Hola, ${d.hello||d.name}:
+
+${plb(d,"es")}${SOLO.es} Es un juego incremental sobre los tazos coleccionables de los 90. Golpeas una pila, cada tazo que cae boca arriba da monedas y coleccionas 216 tazos grotescos. La demo gratuita sale en Steam a principios de diciembre.
+
+¿Me podrías pasar tarifas y las fechas más cercanas para:
+${list(f)}
+
+${RATE.es}
+
+${ai?AI.es:""}Steam: ${L.steam}
+Press kit: ${L.kit}
+
+¡Gracias!
+Ivan`}),
+ fr:(d,f,ai)=>({subj:"Tarifs d'une vidéo sponsorisée : Mortal Caps (démo Steam gratuite)",body:
+`Salut ${d.hello||d.name},
+
+${plb(d,"fr")}${SOLO.fr} C'est un jeu incrémental sur les pogs de collection des années 90. Tu frappes une pile, chaque pog qui retombe face visible rapporte des pièces, et tu collectionnes 216 pogs grotesques. La démo gratuite sort sur Steam début décembre.
+
+Pourrais-tu m'envoyer tes tarifs et tes premières dates disponibles pour :
+${list(f)}
+
+${RATE.fr}
+
+${ai?AI.fr:""}Steam : ${L.steam}
+Kit presse : ${L.kit}
+
+Merci,
+Ivan`})
+};
+function letterFor(d,lang,ai){
+  const lt=d.letter||{};
+  if(lt.custom&&lt.custom[lang]){const c=lt.custom[lang];return {subj:c.subj,body:c.body.replace("{AIP}",ai?AIP[lang]||AIP.en:"").replace("{AI}",ai?AI[lang]||"":"")}}
+  if(lt.formats&&CREATOR[lang]){const f=lt.formats[lang]||lt.formats.en;return CREATOR[lang](d,f,ai)}
+  return null;
+}
+function letterLangs(d){const lt=d.letter||{};const s=new Set();if(lt.custom)Object.keys(lt.custom).forEach(k=>s.add(k));if(lt.formats)(lt.langs||Object.keys(lt.formats)).forEach(k=>s.add(k));return [...s]}
+function isMail(s){return /^[^\s@\/]+@[^\s@\/]+\.[a-z]{2,}$/i.test(s||"")}
+function tgUser(s){s=s||"";const m=s.match(/^@([A-Za-z0-9_]{4,})$/)||s.match(/^https?:\/\/t\.me\/([A-Za-z0-9_]{4,})\/?$/);return m?m[1]:null}
+function curLang(d){const langs=letterLangs(d);return state.lang[d.id]&&langs.includes(state.lang[d.id])?state.lang[d.id]:(langs.includes(d.lang)?d.lang:langs[0])}
+function sendLink(d){
+  const langs=letterLangs(d);if(!langs.length)return null;
+  const lt=letterFor(d,curLang(d),state.ai);if(!lt)return null;
+  const E=encodeURIComponent;
+  if(isMail(d.contact))return {kind:"mail",label:"Открыть в Gmail",href:"https://mail.google.com/mail/?"+(state.sender?"authuser="+E(state.sender)+"&":"")+"view=cm&fs=1&tf=1&to="+E(d.contact)+"&su="+E(lt.subj||"")+"&body="+E(lt.body)};
+  const tg=tgUser(d.contact);
+  if(tg){const full="https://t.me/"+tg+"?text="+E(lt.body);
+    /* t.me answers 400 Bad Request once the link passes ~4 000 characters (Cyrillic grows ~6x when encoded): long letters open the bare chat, the button copies the text */
+    return full.length<=3800?{kind:"tg",prefill:true,label:"Открыть в Telegram",href:full}:{kind:"tg",prefill:false,label:"Скопировать и открыть Telegram",href:"https://t.me/"+tg};}
+  return null;
+}
+function utm(d){return `${L.steam}?utm_source=${encodeURIComponent(d.id)}&utm_medium=paid&utm_campaign=demo`}
+
+/* ---------- state ---------- */
+const state={rows:{},ai:true,sender:"",readonly:false,wave:"all",dir:"",st:"",q:"",open:{},lang:{}};
+let db=null;
+const queues={};
+function persist(id){
+  if(!db||state.readonly)return;
+  const doc=Object.assign({},state.rows[id]||{}, {updatedAt:new Date().toISOString()});
+  queues[id]=(queues[id]||Promise.resolve()).then(()=>db.doc("deals/"+id).set(doc)).then(()=>flash(id,"Сохранено")).catch(e=>{
+    if(e&&e.code==="invalid_argument"){state.readonly=true;flash(id,"Только просмотр");}
+    else flash(id,"Не сохранилось, попробуйте ещё раз");
+  });
+}
+function flash(id,t){const el=document.querySelector(`[data-saved="${id}"]`);if(el){el.textContent=t;clearTimeout(el._t);el._t=setTimeout(()=>{el.textContent=""},2500)}}
+const timers={};
+function persistLater(id){clearTimeout(timers[id]);timers[id]=setTimeout(()=>persist(id),900)}
+function row(id){return state.rows[id]||(state.rows[id]={status:"todo"})}
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function money(n){return "$"+Math.round(n).toLocaleString("ru-RU")}
+function copy(text,btn){
+  const done=()=>{const o=btn.textContent;btn.textContent="Скопировано";setTimeout(()=>{btn.textContent=o},1400)};
+  try{navigator.clipboard.writeText(text).then(done,()=>fallback())}catch(e){fallback()}
+  function fallback(){const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){btn.textContent="Выделите и скопируйте вручную"}ta.remove()}
+}
+function daysSince(iso){if(!iso)return 0;return Math.floor((Date.now()-new Date(iso).getTime())/864e5)}
+function isLink(s){return /^https?:\/\//.test(s||"")}
+
+/* ---------- render ---------- */
+function filtered(){
+  const q=state.q.trim().toLowerCase();
+  return DEALS.filter(d=>(state.wave==="all"||d.wave===state.wave)&&(!state.dir||d.dir===state.dir)&&(!state.st||row(d.id).status===state.st)&&
+    (!q||(d.name+" "+(d.contact||"")+" "+(d.who||"")).toLowerCase().includes(q)));
+}
+function renderSummary(){
+  const counts={};STATUSES.forEach(([k])=>counts[k]=0);
+  DEALS.forEach(d=>counts[row(d.id).status]++);
+  $("#statusbar").innerHTML=STATUSES.map(([k,t])=>`<span class="sb"><span class="dot" style="background:var(--s-${k})"></span>${t} <b class="num">${counts[k]}</b></span>`).join("");
+  $("#money").innerHTML=["min","mid","max"].map(t=>{
+    const items=DEALS.filter(d=>TIERS_IN[t].includes(d.tier));
+    let quoted=0,agreed=0,nq=0;
+    items.forEach(d=>{const r=row(d.id),v=Number(r.quoteUsd)||0;if(v>0&&(r.status==="quoted"||r.status==="agreed"||r.status==="replied")){quoted+=v;nq++}if(r.status==="agreed")agreed+=v});
+    const pct=Math.min(100,quoted/BUDGET[t]*100);
+    return `<div class="mrow"><span><b>${TIERNAME[t]}</b> ${money(BUDGET[t])}</span><div class="bar" title="Названо ${money(quoted)}"><i style="width:${pct}%"></i></div><span class="num">${money(quoted)}</span></div>
+    <div class="hint">Цена есть по ${nq} из ${items.length} позиций · согласовано ${money(agreed)}</div>`}).join("")+
+    `<div class="hint">Считаются суммы в долларах из карточек со статусом «Ответили», «Назвали цену» или «Договорились». В рекламных кабинетах сумму назначаете вы сами, её вписываете вручную.</div>`;
+}
+function renderFilters(){
+  $("#waveSeg").innerHTML=[["all","Все"],...WAVES.map(w=>[w[0],w[1]])].map(([k,t])=>`<button type="button" data-wave="${k}" aria-pressed="${state.wave===k}">${t}</button>`).join("");
+  $("#fDir").innerHTML=`<option value="">Все направления</option>`+Object.entries(DIRS).map(([k,t])=>`<option value="${k}"${state.dir===k?" selected":""}>${t}</option>`).join("");
+  $("#fSt").innerHTML=`<option value="">Все статусы</option>`+STATUSES.map(([k,t])=>`<option value="${k}"${state.st===k?" selected":""}>${t}</option>`).join("");
+}
+function cardHTML(d){
+  const r=row(d.id);
+  const tags=[`<span class="tag">${DIRS[d.dir]||""}</span>`,d.lang?`<span class="tag">${LANGNAME[d.lang]||d.lang}</span>`:"",d.tier&&d.wave!=="w"+({min:1,mid:2,max:3}[d.tier])?`<span class="tag">${TIERNAME[d.tier]||"после демо"}</span>`:"",
+    `<span class="tag price">${esc(d.basis||"")}</span>`,d.anti?`<span class="tag anti">риск отказа из-за ИИ</span>`:""].join("");
+  const remind=r.status==="sent"&&daysSince(r.sentAt)>=4?`<span class="remind">Молчат ${daysSince(r.sentAt)} дн. — напомнить</span>`:"";
+  const contact=d.contact?`<span class="mono">${esc(d.contact)}</span> <button type="button" class="btn" data-copy="${esc(d.contact)}">Копировать</button>${isLink(d.contact)?` <a class="btn" href="${esc(d.contact)}" target="_blank" rel="noopener">Открыть</a>`:""}`:`<span class="hint">${esc(d.contactNote||"контакт не найден")}</span>`;
+  const langs=letterLangs(d);
+  const hasLetter=langs.length>0;
+  const sl=hasLetter?sendLink(d):null;
+  const steps=d.steps?`<div class="cell"><span class="label">Что сделать</span><ol class="asks">${d.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>`:"";
+  return `<article class="card" data-st="${r.status}" id="c-${d.id}">
+  <div class="ctop">
+    <div class="cname"><h3>${esc(d.name)}</h3><div class="tags">${tags}</div></div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+      <select class="stsel" data-st-sel="${d.id}" aria-label="Статус ${esc(d.name)}">${STATUSES.map(([k,t])=>`<option value="${k}"${r.status===k?" selected":""}>${t}</option>`).join("")}</select>
+      ${remind}
+    </div>
+  </div>
+  <p class="who">${esc(d.who)}${d.audience?` <span class="hint">· ${esc(d.audience)}</span>`:""}</p>
+  <div class="grid">
+    <div class="cell"><span class="label">Контакт</span><div class="contact v">${contact}</div></div>
+    <div class="cell"><span class="label">Ожидаемая цена</span><span class="v">${esc(d.price)}</span></div>
+    <div class="cell"><span class="label">Чего ждём</span><span class="v">${esc(d.expect)}</span></div>
+    <div class="cell"><span class="label">Когда выходит</span><span class="v">${esc(d.timing)}</span></div>
+  </div>
+  ${d.ask&&d.ask.length?`<div class="cell"><span class="label">Что спросить</span><ul class="asks">${d.ask.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
+  ${steps}
+  ${d.notes?`<p class="note">${esc(d.notes)}</p>`:""}
+  <div class="mine">
+    <label><span class="label">Назвали цену (как в письме)</span><input id="q-${d.id}" data-f="quote" data-id="${d.id}" value="${esc(r.quote||"")}" placeholder="например, $450 за ролик + Short"></label>
+    <label><span class="label">В долларах</span><input id="u-${d.id}" data-f="quoteUsd" data-id="${d.id}" inputmode="decimal" value="${esc(r.quoteUsd||"")}" placeholder="450"></label>
+    <label><span class="label">Заметка</span><textarea id="n-${d.id}" data-f="note" data-id="${d.id}" rows="1" placeholder="даты, условия, что ответили">${esc(r.note||"")}</textarea></label>
+  </div>
+  <div class="cfoot">
+    ${sl?`<a class="btn primary" href="${esc(sl.href)}" target="_blank" rel="noopener"${sl.kind==="tg"?` data-tgcopy="${d.id}"`:""}>${sl.label}</a>`:""}
+    ${sl&&r.status==="todo"?`<button type="button" class="btn" data-mark="${d.id}">Отправил ✓</button>`:""}
+    ${hasLetter?`<button type="button" class="btn${sl?"":" primary"}" data-letter="${d.id}" aria-expanded="${!!state.open[d.id]}">${state.open[d.id]?"Скрыть письмо":(sl?"Посмотреть письмо":"Письмо")}</button>`:""}
+    <button type="button" class="btn" data-copy="${esc(utm(d))}" title="${esc(utm(d))}">Ссылка Steam с меткой</button>
+    <span class="saved" data-saved="${d.id}"></span>
+  </div>
+  ${hasLetter&&state.open[d.id]?letterHTML(d):""}
+</article>`;
+}
+function letterHTML(d){
+  const langs=letterLangs(d);
+  const lang=curLang(d);
+  const lt=letterFor(d,lang,state.ai);
+  const sl=sendLink(d);
+  return `<div class="letter">
+    <div class="ltabs">${langs.length>1?langs.map(l=>`<button type="button" data-lang="${d.id}:${l}" aria-pressed="${l===lang}">${LANGNAME[l]||l}</button>`).join(""):""}
+      <span class="hint">${d.letter&&d.letter.where?esc(d.letter.where):(sl?(sl.kind==="mail"?"Кнопка «Открыть в Gmail» ставит адресата, тему и текст, остаётся нажать «Отправить».":(sl.prefill?"Кнопка «Открыть в Telegram» открывает чат с этим текстом в строке ввода и заодно копирует его.":"Письмо длинное для ссылки Telegram: кнопка копирует текст и открывает чат, вставьте его (Ctrl+V) и отправьте.")):"Сюда письмо не подставить: скопируйте текст в форму или чат.")}</span></div>
+    ${lt.subj?`<div class="subj"><input readonly value="${esc(lt.subj)}" aria-label="Тема"><button type="button" class="btn" data-copy="${esc(lt.subj)}">Копировать тему</button></div>`:""}
+    <textarea class="body" readonly aria-label="Текст письма">${esc(lt.body)}</textarea>
+    <div class="lbtns">${sl?`<a class="btn primary" href="${esc(sl.href)}" target="_blank" rel="noopener"${sl.kind==="tg"?` data-tgcopy="${d.id}"`:""}>${sl.label}</a> `:""}<button type="button" class="btn${sl?"":" primary"}" data-copybody="${d.id}">Копировать текст</button></div>
+  </div>`;
+}
+function renderWaves(){
+  const items=filtered();
+  $("#count").textContent=`Показано ${items.length} из ${DEALS.length}`;
+  const html=WAVES.map(([k,t,sub,desc])=>{
+    const ds=items.filter(d=>d.wave===k);
+    if(!ds.length)return "";
+    const extra=k==="wait"&&typeof WAIT_OTHERS!=="undefined"?`<p class="other">Ещё ${WAIT_OTHERS.split(", ").length} авторов из топ-20 тоже получили бесплатный ключ, деньги им не предлагаем: ${esc(WAIT_OTHERS)}.</p>`:"";
+    return `<section class="wave" aria-label="${esc(t)}"><div class="wave-head"><span class="label">${esc(t)}</span><h2>${esc(sub)}</h2><p>${esc(desc)}</p></div><div class="cards">${ds.map(cardHTML).join("")}</div>${extra}</section>`;
+  }).join("");
+  $("#waves").innerHTML=html||`<p class="empty">Под эти фильтры ничего не подходит.</p>`;
+}
+function renderAll(){renderSummary();renderFilters();renderWaves();$("#aiLine").checked=state.ai;$("#sender").value=state.sender}
+function rerenderCard(id){const d=DEALS.find(x=>x.id===id);const el=document.getElementById("c-"+id);if(d&&el){el.outerHTML=cardHTML(d)}renderSummary()}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const tgA=e.target.closest&&e.target.closest("a[data-tgcopy]");
+  if(tgA){const d=DEALS.find(x=>x.id===tgA.dataset.tgcopy);const lt=d&&letterFor(d,curLang(d),state.ai);
+    if(lt){const o=tgA.textContent;const ok=()=>{tgA.textContent="Текст скопирован: вставьте в чат";setTimeout(()=>{tgA.textContent=o},3500)};
+      try{navigator.clipboard.writeText(lt.body).then(ok,()=>{})}catch(err){}}
+    return}
+
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.wave){state.wave=b.dataset.wave;renderFilters();renderWaves();return}
+  if(b.dataset.copy!=null){copy(b.dataset.copy,b);return}
+  if(b.dataset.letter){const id=b.dataset.letter;state.open[id]=!state.open[id];rerenderCard(id);return}
+  if(b.dataset.lang){const [id,l]=b.dataset.lang.split(":");state.lang[id]=l;rerenderCard(id);return}
+  if(b.dataset.mark){const id=b.dataset.mark,r=row(id);r.status="sent";if(!r.sentAt)r.sentAt=new Date().toISOString();persist(id);rerenderCard(id);return}
+  if(b.dataset.copybody){const ta=b.closest(".letter").querySelector("textarea.body");copy(ta.value,b);return}
+});
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.stSel){const id=t.dataset.stSel,r=row(id);r.status=t.value;if(t.value==="sent"&&!r.sentAt)r.sentAt=new Date().toISOString();persist(id);rerenderCard(id);return}
+  if(t.id==="fDir"){state.dir=t.value;renderWaves();return}
+  if(t.id==="fSt"){state.st=t.value;renderWaves();return}
+  if(t.id==="aiLine"){state.ai=t.checked;renderWaves();saveSettings();return}
+  if(t.id==="sender"){state.sender=t.value.trim();renderWaves();saveSettings();return}
+});
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.id==="fQ"){state.q=t.value;renderWaves();return}
+  if(t.dataset.f&&t.dataset.id){const r=row(t.dataset.id);r[t.dataset.f]=t.dataset.f==="quoteUsd"?(t.value.replace(",",".").replace(/[^\d.]/g,"")):t.value;persistLater(t.dataset.id);if(t.dataset.f==="quoteUsd")renderSummary()}
+});
+
+function saveSettings(){if(db&&!state.readonly){db.doc("settings/main").set({aiLine:state.ai,sender:state.sender,updatedAt:new Date().toISOString()}).catch(()=>{})}}
+/* ---------- boot ---------- */
+renderAll();
+(async()=>{
+  try{db=window.claude&&window.claude.use?await window.claude.use("db"):null}catch(e){db=null}
+  if(!db){const n=$("#loadnote");n.hidden=false;n.textContent="Хранилище недоступно в этом просмотре: статусы и цены сейчас не сохранятся.";return}
+  const note=$("#loadnote");
+  const t=setTimeout(()=>{note.hidden=false;note.textContent="Сохранённые статусы пока не загрузились. Можно работать, но то, что видно, может быть устаревшим."},10000);
+  db.collection("deals").onSnapshot(snap=>{
+    if(!snap.metadata.fromCache){clearTimeout(t);note.hidden=true}
+    const focused=document.activeElement&&document.activeElement.dataset&&document.activeElement.dataset.id;
+    snap.docs.forEach(doc=>{const v=doc.data();if(!v)return;if(doc.id===focused&&timers[doc.id])return;state.rows[doc.id]=Object.assign({status:"todo"},v)});
+    if(focused){renderSummary();DEALS.forEach(d=>{if(d.id!==focused){const el=document.getElementById("c-"+d.id);if(el&&el.dataset.st!==row(d.id).status)rerenderCard(d.id)}})}
+    else{renderSummary();renderWaves()}
+  },err=>{clearTimeout(t);note.hidden=false;note.textContent="Сохранённые статусы недоступны: "+(err&&err.code==="revoked"?"доступ изменился.":"попробуйте открыть страницу позже.")});
+  db.doc("settings/main").onSnapshot(s=>{const v=s.exists?s.data():null;if(!v)return;let ch=false;
+    if(typeof v.aiLine==="boolean"&&v.aiLine!==state.ai){state.ai=v.aiLine;$("#aiLine").checked=state.ai;ch=true}
+    if(typeof v.sender==="string"&&v.sender!==state.sender&&document.activeElement!==$("#sender")){state.sender=v.sender;$("#sender").value=state.sender;ch=true}
+    if(ch)renderWaves()},()=>{});
+})();
+})();
+
+</script>
+</body></html>
