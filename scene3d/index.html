@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Капсула Mortal Caps в 3D</title>
+<style>
+:root{--bg:#0e0c14;--panel:#17151f;--line:#2b2838;--text:#efeef4;--muted:#a19db0;--accent:#ffb347;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:13.5px/1.45 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:100%}
+#stage{position:relative;min-width:0;min-height:0;display:grid;place-items:center;background:#08070c}
+#frame{position:relative;aspect-ratio:16/9;width:min(100%,calc((100vh - 24px)*16/9));max-height:calc(100vh - 24px);background:repeating-conic-gradient(#1d1b24 0 25%,#16141c 0 50%) 0 0/22px 22px}
+#frame canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#ref{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;opacity:0}
+.hint{position:absolute;left:10px;bottom:8px;background:rgba(0,0,0,.6);padding:5px 9px;border-radius:7px;font-size:12px;color:#ddd;pointer-events:none}
+.side{background:var(--panel);border-left:1px solid var(--line);padding:14px;overflow:auto;display:flex;flex-direction:column;gap:13px}
+h1{margin:0;font-size:17px}
+h2{margin:0 0 6px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.grp{display:flex;flex-direction:column;gap:7px}
+.row{display:flex;gap:5px;flex-wrap:wrap}
+button,select{font:600 12.5px inherit;font-family:inherit;padding:6px 9px;border-radius:8px;border:1px solid var(--line);background:#221f2e;color:var(--text);cursor:pointer}
+button:hover{border-color:#4a4560}
+button.on{border-color:var(--accent);color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--muted)}
+label b{color:var(--text);font-weight:600}
+label.chk{flex-direction:row;align-items:center;gap:7px}
+input[type=range]{width:100%}
+.read{font:12px/1.55 ui-monospace,Consolas,monospace;background:#110f18;border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:#d8d5e4;white-space:pre;overflow-x:auto}
+.small{font-size:12px;color:var(--muted);margin:0}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto}.side{border-left:0;border-top:1px solid var(--line)}#frame{width:100%;max-height:none}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head><body>
+<div class="app">
+  <div id="stage"><div id="frame"><img id="ref" src="ref.jpg" alt=""><div class="hint">ЛКМ — вращать · колесо — ближе/дальше · ПКМ — сдвигать</div></div></div>
+  <aside class="side">
+    <div><h1>Капсула Mortal Caps в 3D</h1><p class="small">Сцена из моделей игры, камера вычислена по референсу. Найдите свой ракурс, переключайте режимы и сохраняйте PNG.</p></div>
+
+    <div class="grp"><h2>Показ</h2>
+      <div class="row" id="modes">
+        <button data-m="beauty" class="on">Рендер</button><button data-m="clay">Глина</button><button data-m="groups">Маска: группы</button>
+        <button data-m="parts">Маска: части</button><button data-m="objects">Маска: объекты</button><button data-m="lines">Контуры</button><button data-m="depth">Глубина</button>
+      </div>
+      <label>Референс поверх кадра: <b id="refV">0%</b><input type="range" id="refO" min="0" max="100" value="0"></label>
+    </div>
+
+    <div class="grp"><h2>Объектив</h2>
+      <label>Фокусное расстояние (экв. 35 мм): <b id="focV"></b><input type="range" id="foc" min="8" max="85" step="0.5" value="30"></label>
+      <label class="chk"><input type="checkbox" id="dolly" checked> Долли-зум: при смене фокуса камера отъезжает/подъезжает, центр кадра того же размера</label>
+      <label>Дисторсия (бочка, «0,5×»): <b id="disV"></b><input type="range" id="dis" min="0" max="0.30" step="0.005" value="0.07"></label>
+      <label>Завал горизонта (голландский угол): <b id="rollV"></b><input type="range" id="roll" min="-25" max="25" step="0.1" value="0"></label>
+      <div class="row"><button id="reset">Камера как на референсе</button></div>
+    </div>
+
+    <div class="grp"><h2>Сохранить</h2>
+      <div class="row"><select id="res" aria-label="Размер PNG"><option value="1200">1200×675</option><option value="2400">2400×1350</option><option value="3600" selected>3600×2025</option></select>
+        <button id="save">Сохранить PNG</button><button id="saveAll">Все режимы</button></div>
+      <p class="small">Маски сохраняются без сглаживания: цвета ровные, «волшебная палочка» с допуском 0 берёт область целиком. Рендер — с прозрачным фоном.</p>
+    </div>
+
+    <div class="grp"><h2>Параметры камеры</h2>
+      <div class="read" id="read"></div>
+      <div class="row"><button id="copy">Скопировать</button></div>
+      <p class="small" id="msg">Пришлите эти числа — по ним соберу финальный рендер в Blender из того же ракурса.</p>
+    </div>
+  </aside>
+</div>
+<script type="module">
+import * as THREE from "three";
+import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {RoomEnvironment} from "three/addons/environments/RoomEnvironment.js";
+
+const $=id=>document.getElementById(id);
+const CJ=await (await fetch("camera.json")).json();
+const AW=CJ.W, AH=CJ.H, ASP=AW/AH;                       // 1200 x 675 frame
+const frame=$("frame");
+const renderer=new THREE.WebGLRenderer({antialias:false,alpha:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2)); frame.prepend(renderer.domElement);
+renderer.toneMapping=THREE.NoToneMapping;
+
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer); const ENV=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+const camera=new THREE.PerspectiveCamera(37,ASP,0.05,400);
+const controls=new OrbitControls(camera,renderer.domElement); controls.enableDamping=true; controls.dampingFactor=0.1; controls.minDistance=0.3; controls.maxDistance=60;
+
+// ---- lights for "beauty" and "clay"
+const hemi=new THREE.HemisphereLight(0xffd6a8,0x2a1f45,0.9); const key=new THREE.DirectionalLight(0xffe0b8,2.4); key.position.set(-3,4,3);
+const rim=new THREE.DirectionalLight(0xff8a2a,3.0); rim.position.set(3,5,-8); scene.add(hemi,key,rim);
+
+// ---- materials per mode
+const groupOf=o=>{let p=o;while(p){if(p.userData&&p.userData.mc_group)return p.userData.mc_group;p=p.parent}return "other"};
+const partOf=m=>{const n=(m&&m.name)||"";if(n.startsWith("front_"))return "front";if(n.startsWith("back_"))return "back";if(n.startsWith("cap_edge"))return "cap_edge";
+  if(n.startsWith("slm_body"))return "slm_body";if(n.startsWith("slm_insert"))return "slm_insert";if(n.startsWith("felt"))return "felt";if(n.startsWith("tray"))return "tray";return "other"};
+const flatMat=(rgb)=>new THREE.ShaderMaterial({uniforms:{c:{value:new THREE.Vector3(rgb[0]/255,rgb[1]/255,rgb[2]/255)}},
+  vertexShader:"void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
+  fragmentShader:"uniform vec3 c;void main(){gl_FragColor=vec4(c,1.);}",side:THREE.DoubleSide});
+const depthMat=new THREE.ShaderMaterial({uniforms:{n:{value:1.5},f:{value:24}},side:THREE.DoubleSide,
+  vertexShader:"varying float d;void main(){vec4 mv=modelViewMatrix*vec4(position,1.);d=-mv.z;gl_Position=projectionMatrix*mv;}",
+  fragmentShader:"uniform float n,f;varying float d;void main(){float t=clamp((d-n)/(f-n),0.,1.);gl_FragColor=vec4(vec3(1.-t),1.);}"});
+const clayMat=new THREE.MeshStandardMaterial({color:0xcdc6bd,roughness:.8,metalness:0});
+let model=null; const meshes=[]; const objColors=new Map();
+function hashColor(i){let h=(i*2654435761)>>>0;const r=64+(h&127),g=64+((h>>8)&127),b=64+((h>>16)&127);return [r,g,b]}
+function setMode(mode){
+  for(const m of meshes){
+    const o=m.mesh;
+    if(mode==="beauty") o.material=m.orig;
+    else if(mode==="clay") o.material=Array.isArray(m.orig)?m.orig.map(()=>clayMat):clayMat;
+    else if(mode==="depth") o.material=Array.isArray(m.orig)?m.orig.map(()=>depthMat):depthMat;
+    else if(mode==="groups") o.material=flatMat(CJ.groups[m.group]||[77,77,77]);
+    else if(mode==="parts") o.material=Array.isArray(m.orig)?m.orig.map(x=>flatMat(CJ.parts[partOf(x)]||[128,128,128])):flatMat(CJ.parts[partOf(m.orig)]||[128,128,128]);
+    else if(mode==="objects"||mode==="lines"){
+      const base=objColors.get(m.objKey);
+      if(mode==="objects") o.material=flatMat(base);
+      else o.material=Array.isArray(m.orig)?m.orig.map((x,i)=>flatMat(hashColor(m.objIndex*13+i+1))):flatMat(hashColor(m.objIndex*13+1));
+    }
+  }
+  hemi.visible=key.visible=rim.visible=(mode==="beauty"||mode==="clay");
+  scene.environment=(mode==="beauty")?ENV:null;
+}
+
+// ---- over-render + barrel distortion + (for "lines") edges, done in one full-screen pass
+const OVERFN=k=>{const rc=Math.hypot(1,AH/AW);let ru=rc;for(let i=0;i<40;i++)ru-= (ru*(1-k*ru*ru)-rc)/(1-3*k*ru*ru);return ru/rc*1.01};
+let rtAA=null, rtNo=null;
+function makeRT(w,h){
+  if(rtAA)rtAA.dispose(); if(rtNo)rtNo.dispose();
+  rtAA=new THREE.WebGLRenderTarget(w,h,{samples:4,type:THREE.HalfFloatType});
+  rtNo=new THREE.WebGLRenderTarget(w,h,{samples:0,minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter});
+}
+const post=new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.RawShaderMaterial({
+  uniforms:{t:{value:null},k:{value:0.07},over:{value:1.1},asp:{value:AH/AW},mode:{value:0},px:{value:new THREE.Vector2(1,1)},expo:{value:1.0}},
+  vertexShader:`precision highp float;attribute vec3 position;attribute vec2 uv;varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`,
+  fragmentShader:`precision highp float;uniform sampler2D t;uniform float k,over,asp,expo;uniform int mode;uniform vec2 px;varying vec2 vUv;
+  vec3 aces(vec3 x){return clamp((x*(2.51*x+.03))/(x*(2.43*x+.59)+.14),0.,1.);}
+  vec3 toSRGB(vec3 c){return mix(c*12.92,1.055*pow(c,vec3(1./2.4))-.055,step(.0031308,c));}
+  vec2 und(vec2 p){vec2 d=vec2((p.x-.5)*2.,(p.y-.5)*2.*asp);float rd=length(d);if(rd<1e-6)return vec2(.5);
+    float ru=rd;for(int i=0;i<8;i++){ru-=(ru*(1.-k*ru*ru)-rd)/(1.-3.*k*ru*ru);} vec2 u=d*(ru/rd);
+    return vec2(.5+u.x/(2.*over),.5+u.y/(2.*over*asp));}
+  void main(){vec2 q=und(vUv);
+    if(q.x<0.||q.y<0.||q.x>1.||q.y>1.){gl_FragColor=vec4(0.);return;}
+    vec4 c=texture2D(t,q);
+    if(mode==0){gl_FragColor=vec4(toSRGB(aces(c.rgb*expo)),c.a);}          // beauty / clay: tone map + sRGB, alpha kept
+    else if(mode==1){gl_FragColor=vec4(c.rgb,1.);}                         // masks / depth: exact values
+    else{ vec3 a=texture2D(t,q+vec2(px.x,0.)).rgb,b=texture2D(t,q-vec2(px.x,0.)).rgb,e=texture2D(t,q+vec2(0.,px.y)).rgb,f=texture2D(t,q-vec2(0.,px.y)).rgb;
+      float edge=step(1e-4,dot(abs(a-c.rgb)+abs(b-c.rgb)+abs(e-c.rgb)+abs(f-c.rgb),vec3(1.)));gl_FragColor=vec4(vec3(1.-edge),1.);}
+  }`,depthTest:false,depthWrite:false}));
+const postScene=new THREE.Scene(); postScene.add(post); const postCam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+
+// ---- state
+let MODE="beauty", K=0.07, FOCAL=30, ROLL=CJ.roll_deg;
+const focalToVfov=f=>2*Math.atan((36/ASP)/2/f)*180/Math.PI;          // 36 mm wide sensor, 16:9 frame
+function frameSize(){const r=frame.getBoundingClientRect();return [Math.max(2,Math.round(r.width)),Math.max(2,Math.round(r.height))]}
+function render(w,h,pr){
+  const over=OVERFN(K); const W2=Math.round(w*pr*over), H2=Math.round(h*pr*over);
+  if(!rtAA||rtAA.width!==W2||rtAA.height!==H2) makeRT(W2,H2);
+  const vf=focalToVfov(FOCAL); camera.fov=2*Math.atan(Math.tan(vf*Math.PI/360)*over)*180/Math.PI; camera.aspect=ASP; camera.updateProjectionMatrix();
+  const masks=!(MODE==="beauty"||MODE==="clay"); const rt=masks?rtNo:rtAA;
+  scene.background=masks?new THREE.Color(0,0,0):null;
+  if(MODE==="lines") scene.background=new THREE.Color(1,1,1);
+  renderer.setRenderTarget(rt); renderer.setClearColor(0x000000,masks?1:0); renderer.clear(); renderer.render(scene,camera);
+  renderer.setRenderTarget(null);
+  const u=post.material.uniforms; u.t.value=rt.texture; u.k.value=K; u.over.value=over; u.mode.value=masks?(MODE==="lines"?2:1):0; u.px.value.set(1/W2,1/H2);
+  renderer.setClearColor(0x000000,0); renderer.clear(); renderer.render(postScene,postCam);
+}
+function applyCamera(){ controls.update(); camera.rotateZ(THREE.MathUtils.degToRad(ROLL)); }
+
+// ---- solved camera
+function resetCamera(){
+  FOCAL=CJ.F*36/AW; $("foc").value=FOCAL; K=CJ.k1<0?-CJ.k1:CJ.k1; $("dis").value=K; ROLL=CJ.roll_deg; $("roll").value=ROLL;
+  camera.position.fromArray(CJ.pos); controls.target.fromArray(CJ.target); camera.up.set(0,1,0); controls.update(); syncLabels();
+}
+// yellow paint with black grime for the rail (the Blender rail is procedural, glTF cannot carry it)
+function grime(){const c=document.createElement("canvas");c.width=c.height=512;const g=c.getContext("2d");g.fillStyle="#f2a812";g.fillRect(0,0,512,512);
+  let s=7;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;g.fillStyle="#1a1208";
+  for(let i=0;i<260;i++){const x=rnd()*512,y=rnd()*512,r=4+rnd()*26;g.globalAlpha=.55+rnd()*.45;g.beginPath();g.ellipse(x,y,r,r*(.5+rnd()),rnd()*3,0,7);g.fill()}
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(6,1);return t}
+// ---- load
+new GLTFLoader().load("scene.glb",g=>{
+  model=g.scene; scene.add(model); let idx=0;
+  const keyOf=o=>{let p=o;while(p.parent&&p.parent!==model)p=p.parent;return p.uuid};
+  model.traverse(o=>{ if(!o.isMesh) return;
+    const k=keyOf(o); if(!objColors.has(k)) objColors.set(k,hashColor(objColors.size+7));
+    const mats=Array.isArray(o.material)?o.material:[o.material];
+    for(const m of mats){ if(m.map) m.map.anisotropy=8; if(partOf(m)==="tray"){m.color=new THREE.Color(0xe2a010);m.roughness=.8;m.emissive=new THREE.Color(0x000000);m.emissiveMap=null;m.map=grime()}
+      if(partOf(m)==="felt"){m.color=new THREE.Color(0x1f5a2a);m.map=null;m.roughness=.95;m.emissive=new THREE.Color(0)} if(partOf(m)==="cap_edge"){m.color=new THREE.Color(0xd8cfc0)}
+      if(partOf(m).startsWith("slm")){m.envMapIntensity=2.2;m.metalness=Math.min(m.metalness,.75)} }
+    meshes.push({mesh:o,orig:o.material,group:groupOf(o),objKey:k,objIndex:idx++});
+  });
+  resetCamera(); setMode(MODE);
+},undefined,e=>{$("msg").textContent="Не удалось загрузить сцену: "+e.message});
+
+// ---- UI
+function syncLabels(){$("focV").textContent=FOCAL.toFixed(1)+" мм · угол "+(2*Math.atan(18/FOCAL)*180/Math.PI).toFixed(0)+"° по горизонтали";
+  $("disV").textContent=K.toFixed(3); $("rollV").textContent=ROLL.toFixed(1)+"°"; $("refV").textContent=$("refO").value+"%";}
+document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;document.querySelectorAll("#modes button").forEach(x=>x.classList.toggle("on",x===b));setMode(MODE)});
+$("refO").oninput=e=>{$("ref").style.opacity=e.target.value/100;syncLabels()};
+$("foc").oninput=e=>{const f=+e.target.value;
+  if($("dolly").checked){const off=camera.position.clone().sub(controls.target);off.multiplyScalar(f/FOCAL);camera.position.copy(controls.target).add(off)}
+  FOCAL=f;syncLabels()};
+$("dis").oninput=e=>{K=+e.target.value;syncLabels()};
+$("roll").oninput=e=>{ROLL=+e.target.value;syncLabels()};
+$("reset").onclick=resetCamera;
+function params(){const off=camera.position.clone().sub(controls.target);const fwd=new THREE.Vector3();camera.getWorldDirection(fwd);
+  return {focal_mm:+FOCAL.toFixed(1),hfov_deg:+(2*Math.atan(18/FOCAL)*180/Math.PI).toFixed(1),distortion_k1:-K,roll_deg:+ROLL.toFixed(1),
+    pitch_deg:+(Math.asin(fwd.y)*180/Math.PI).toFixed(1),yaw_deg:+(Math.atan2(fwd.x,-fwd.z)*180/Math.PI).toFixed(1),
+    cam_height:+camera.position.y.toFixed(3),cam_pos:camera.position.toArray().map(v=>+v.toFixed(3)),target:controls.target.toArray().map(v=>+v.toFixed(3)),dist:+off.length().toFixed(3)}}
+function readout(){const p=params();$("read").textContent=
+  `Фокус ${p.focal_mm} мм (${p.hfov_deg}° по гориз.)\nДисторсия ${(-p.distortion_k1).toFixed(3)}\nЗавал ${p.roll_deg}°   наклон ${p.pitch_deg}°   поворот ${p.yaw_deg}°\nВысота камеры ${p.cam_height} (фишка = 1)\nДо точки вращения ${p.dist}`}
+$("copy").onclick=()=>{const t=JSON.stringify(params());navigator.clipboard.writeText(t).then(()=>{$("msg").textContent="Скопировано: "+t}).catch(()=>{$("msg").textContent=t})};
+const NAMES={beauty:"render",clay:"clay",groups:"mask_groups",parts:"mask_parts",objects:"mask_objects",lines:"lineart",depth:"depth"};
+function savePNG(mode){
+  const w=+$("res").value,h=Math.round(w/ASP); const prev=MODE; if(mode&&mode!==MODE){MODE=mode;setMode(MODE)}
+  const pr=renderer.getPixelRatio(); renderer.setPixelRatio(1); renderer.setSize(w,h,false); applyCamera(); render(w,h,1);
+  const a=document.createElement("a"); a.download=`mortalcaps_${NAMES[MODE]}_${w}x${h}.png`; a.href=renderer.domElement.toDataURL("image/png"); a.click();
+  renderer.setPixelRatio(pr); onResize(); if(MODE!==prev){MODE=prev;setMode(MODE)}
+}
+$("save").onclick=()=>savePNG();
+$("saveAll").onclick=async()=>{for(const m of Object.keys(NAMES)){savePNG(m);await new Promise(r=>setTimeout(r,400))}};
+function onResize(){const [w,h]=frameSize();renderer.setSize(w,h,false)}
+addEventListener("resize",onResize); onResize(); syncLabels();
+renderer.setAnimationLoop(()=>{ if(!model) return; applyCamera(); const [w,h]=frameSize(); render(w,h,renderer.getPixelRatio()); readout(); });
+</script>
+</body></html>
