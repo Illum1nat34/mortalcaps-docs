@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Продвижение Mortal Caps</title>
+<style>
+/* Format: the colleague's Telegram-ads page (dark cards, metric tiles, verdict badges), extended with our outreach log. */
+:root{
+  --bg:#0b0d12;--bg2:#11141b;--card:#161a23;--card2:#1c212c;--line:#272d3a;
+  --text:#eef1f6;--muted:#97a0b0;--soft:#c9d0db;
+  --g5:#16a34a;--g4:#4ade80;--g3:#facc15;--g2:#fb923c;--g1:#f87171;
+  --blue:#60a5fa;--new:#ff3d81;--violet:#c4b5fd;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,#1b2340 0,transparent 60%),radial-gradient(900px 500px at 110% 0,#2a1838 0,transparent 55%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-block:32px 70px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
+.logo{width:74px;height:74px;border-radius:20px;background:linear-gradient(135deg,#ff3d81,#7c3aed 60%,#2563eb);display:grid;place-items:center;font-weight:800;font-size:30px;box-shadow:0 10px 30px rgba(124,58,237,.35);flex:none}
+.hero>div:last-child{min-width:0;flex:1 1 300px}
+.hero h1{margin:0;font-size:clamp(24px,3.4vw,34px);line-height:1.15;text-wrap:balance}
+.hero p{margin:6px 0 0;color:var(--muted);max-width:80ch}
+.hero p a{color:#93c5fd}
+.upd{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13px;color:var(--soft)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g4);box-shadow:0 0 0 4px rgba(74,222,128,.15)}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:18px}
+.sbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:.15s;text-align:left;color:inherit;font:inherit}
+.sbox:hover{transform:translateY(-2px);border-color:#3a4356}
+.sbox b{font-size:28px;display:block;line-height:1.1}
+.sbox span{color:var(--muted);font-size:13px}
+.sbox.all b{color:var(--text)}.sbox.touch b{color:var(--g3)}.sbox.ov b{color:var(--new)}.sbox.plan b{color:var(--g4)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:8px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit;font-size:14px}
+.chip.on{background:#24304a;border-color:#5b7cc4}
+.chip:focus-visible,.sbox:focus-visible,select:focus-visible,input:focus-visible,.btn:focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input[type=search]{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;max-width:100%}
+input[type=search]{min-width:0;width:220px}
+.legend{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-bottom:18px;flex-wrap:wrap}
+.scale{display:flex;border-radius:6px;overflow:hidden}
+.scale i{width:26px;height:10px;display:block}
+.count{color:var(--muted);font-size:13px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:16px}
+.card{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;transition:.15s;min-width:0}
+.card:hover{border-color:#3a4356;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.card.isov{border-color:rgba(255,61,129,.5)}
+.card.inplan{border-color:rgba(74,222,128,.6);box-shadow:0 0 0 1px rgba(74,222,128,.25)}
+.rank{position:absolute;top:14px;right:16px;color:#4b5568;font-weight:700;font-size:13px}
+.head{display:flex;gap:12px;align-items:center;padding-right:28px;min-width:0}
+.av{width:54px;height:54px;border-radius:50%;flex:none;background:#2a3040;display:grid;place-items:center;font-weight:800;font-size:22px;color:#fff;border:2px solid #2d3443}
+.ttl{min-width:0}
+.ttl a,.ttl span.nm{font-weight:700;font-size:17px;text-decoration:none;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttl a:hover{text-decoration:underline}
+.ttl small{color:var(--muted);font-size:13px;display:block}
+.verdict{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:700}
+.b-go{background:rgba(22,163,74,.18);color:var(--g4)}
+.b-wait{background:rgba(96,165,250,.16);color:var(--blue)}
+.b-test{background:rgba(250,204,21,.15);color:var(--g3)}
+.b-no{background:rgba(248,113,113,.15);color:var(--g1)}
+.b-kind{background:#222838;color:var(--soft);font-weight:600}
+.b-ov{background:rgba(255,61,129,.16);color:#ff9cc0}
+.b-plan{background:rgba(74,222,128,.2);color:#bbf7d0}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.m{position:relative;border-radius:12px;padding:9px 3px;text-align:center;background:#1f2430;border:1px solid transparent;min-width:0}
+.m .v{font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
+.m .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.m .s{font-size:10.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c5{background:rgba(22,163,74,.22);border-color:rgba(22,163,74,.45)}.c5 .v{color:#86efac}
+.c4{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.28)}.c4 .v{color:#bbf7d0}
+.c3{background:rgba(250,204,21,.12);border-color:rgba(250,204,21,.28)}.c3 .v{color:#fde68a}
+.c2{background:rgba(251,146,60,.13);border-color:rgba(251,146,60,.3)}.c2 .v{color:#fed7aa}
+.c1{background:rgba(248,113,113,.14);border-color:rgba(248,113,113,.32)}.c1 .v{color:#fecaca}
+.c0 .v{color:var(--muted)}
+.why{color:var(--soft);font-size:14px;margin:0;overflow-wrap:anywhere}
+.src,.price{font-size:12.5px;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.price b{color:var(--soft)}
+.fair{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;margin:0;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#1a1f2a}
+.fair b{font-weight:800}
+.f5{border-color:rgba(22,163,74,.45);background:rgba(22,163,74,.12)}.f5 b{color:#86efac}
+.f4{border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.07)}.f4 b{color:#bbf7d0}
+.f2{border-color:rgba(251,146,60,.35);background:rgba(251,146,60,.08)}.f2 b{color:#fed7aa}
+.f1{border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.09)}.f1 b{color:#fecaca}
+.f0 b{color:var(--muted)}
+.alts{font-size:12.5px;color:var(--muted);margin:0;line-height:1.7;overflow-wrap:anywhere}
+.alts .best{color:#86efac;font-weight:700}
+.alts s{opacity:.75}
+/* our outreach log */
+.ours{border-radius:12px;border:1px solid #3a3150;background:rgba(124,58,237,.08);padding:9px 11px;display:flex;flex-direction:column;gap:6px}
+.ours h4{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--violet)}
+.ours .row{font-size:13px;color:var(--soft);overflow-wrap:anywhere}
+.ours .row .st{font-weight:700;white-space:nowrap}
+.ours .row .who{color:var(--muted);font-size:12px}
+.ours.none{border-style:dashed;border-color:var(--line);background:transparent}
+.ours.none .row{color:var(--muted)}
+.s-bought,.s-agreed{color:#86efac}.s-quoted,.s-replied{color:#93c5fd}.s-sent{color:#fde68a}.s-keys{color:var(--violet)}
+.s-declined{color:#fca5a5}.s-hold,.s-todo,.s-plan,.s-note{color:var(--muted)}
+.warn{font-size:13px;font-weight:700;color:#ffb3cf;margin:0}
+.foot{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap}
+.contact{font-size:13.5px;color:var(--soft);overflow-wrap:anywhere;min-width:0}
+.contact b{color:var(--text)}
+.btn{display:inline-block;text-decoration:none;font-size:13px;font-weight:600;padding:7px 12px;border-radius:10px;background:#24304a;border:1px solid #33456b;white-space:nowrap}
+.btn:hover{background:#2c3b5c}
+.sec{margin-top:34px}
+.sec h2{font-size:20px;margin:0 0 12px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-width:0}
+.box h3{margin:0 0 8px;font-size:16px}
+.box p,.box li{color:var(--soft);font-size:14px;margin:6px 0}
+.box ul,.box ol{margin:0;padding-left:20px}
+.plan{border-color:rgba(74,222,128,.45);background:linear-gradient(180deg,rgba(22,163,74,.1),var(--card))}
+.plan table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+.plan td,.plan th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.plan th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.plan td.n{text-align:right;white-space:nowrap}
+.plan tr.tot td{font-weight:800;border-bottom:none}
+.tblw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tbl th,.tbl td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;background:#141822}
+.tbl td.n{text-align:right;white-space:nowrap}
+footer{margin-top:28px;color:var(--muted);font-size:13px}
+@media (max-width:420px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.ttl a,.ttl span.nm{font-size:16px}}
+
+.rowid{font-size:11.5px;color:#6b7486}.rowid code{color:#8b95a7}
+.ours .row.hist{color:var(--muted);font-size:12.5px}
+.edit{border-color:rgba(96,165,250,.45);background:linear-gradient(180deg,rgba(37,99,235,.10),var(--card))}
+.edit a{color:#93c5fd}.edit code{background:#222838;padding:1px 5px;border-radius:5px}
+.mdbox table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0;display:block;overflow-x:auto}
+.mdbox td,.mdbox th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.mdbox th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.mdbox h2{font-size:18px;margin:16px 0 8px}.mdbox h2:first-child{margin-top:0}.mdbox h3{font-size:16px;margin:14px 0 6px}
+.mdbox p,.mdbox li{color:var(--soft);font-size:14px}.mdbox code{background:#222838;padding:1px 5px;border-radius:5px}
+.sbox.dec b{color:var(--g1)}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="logo" aria-hidden="true">MC</div>
+    <div>
+      <h1>Реклама и блогеры Mortal Caps: общий список</h1>
+      <p>Telegram-каналы (охваты, цены продавцов, ответы менеджеров), платные сделки, письма блогерам и ранние ключи — в одной таблице. <b>Перед тем как писать каналу или блогеру, найдите его здесь.</b> Если он уже на связи, продолжайте в той же переписке. После каждого письма или ответа — отметка в таблице. Игра: <a href="https://store.steampowered.com/app/5495840/Mortal_Caps/" target="_blank" rel="noopener">Mortal Caps в Steam</a></p>
+    </div>
+  </div>
+
+  <div class="box edit" style="margin-bottom:18px">
+    <h3>✏️ Как править</h3>
+    <ol>
+      <li>Откройте <a href="https://github.com/Illum1nat34/mortalcaps-docs/edit/main/promo/data.csv" target="_blank" rel="noopener">таблицу в редакторе GitHub</a>. Нужен вход в GitHub с доступом к репозиторию.</li>
+      <li>Найдите строку через Ctrl+F: по названию или по <code>id</code> (он внизу каждой карточки).</li>
+      <li>Поменяйте колонки <b>Статус</b>, <b>Дата</b>, <b>Кто</b>, <b>Комментарий</b>. Прошлую запись можно перенести в <b>Историю</b> через <code>‖</code>. Статусы: Не писали, Написали, Ответили, Назвали цену, Договорились, Куплено, Отказались, Пока не пишем, Ранний ключ.</li>
+      <li>Если в тексте есть запятая, весь текст ячейки берётся в кавычки <code>"…"</code>. Новый канал — новая строка в конце, с тем же числом колонок.</li>
+      <li>Нажмите <b>Commit changes</b>. Страница обновится примерно через минуту.</li>
+    </ol>
+    <p>Также: <a href="https://github.com/Illum1nat34/mortalcaps-docs/edit/main/promo/plan.md" target="_blank" rel="noopener">править план</a> · <a href="https://github.com/Illum1nat34/mortalcaps-docs/edit/main/promo/answers.md" target="_blank" rel="noopener">править ответы</a> · <a href="https://github.com/Illum1nat34/mortalcaps-docs/blob/main/promo/data.csv" target="_blank" rel="noopener">таблица на GitHub (с поиском)</a> · <a href="https://github.com/Illum1nat34/mortalcaps-docs/commits/main/promo" target="_blank" rel="noopener">история правок</a>. Удобнее в Excel или Google Таблицах: скачать <a href="data.csv" download>data.csv</a>, поправить, сохранить как CSV (UTF-8) и <a href="https://github.com/Illum1nat34/mortalcaps-docs/upload/main/promo" target="_blank" rel="noopener">загрузить обратно</a> с тем же именем.</p>
+  </div>
+
+  <div class="sum">
+    <button class="sbox all" data-q="all"><b id="n-all">…</b><span>каналов и блогеров в списке</span></button>
+    <button class="sbox touch" data-q="touched"><b id="n-touch">…</b><span>✉️ уже на связи: второе письмо не слать</span></button>
+    <button class="sbox dec" data-q="declined"><b id="n-dec">…</b><span>🚫 отказались</span></button>
+    <button class="sbox plan" data-q="plan"><b id="n-plan">…</b><span>📌 в плане на пт–сб (до $500)</span></button>
+  </div>
+
+  <section class="sec" style="margin-top:8px" aria-label="План">
+    <div class="box plan mdbox" id="planBox">Загружаю план…</div>
+  </section>
+
+  <section class="sec" aria-labelledby="list-h">
+    <h2 id="list-h">Список</h2>
+    <div class="bar">
+      <div class="chips" role="group" aria-label="Тип">
+        <button class="chip on" data-k="all">Все</button>
+        <button class="chip" data-k="tg">Telegram-реклама</button>
+        <button class="chip" data-k="paid">Платно: блогеры и сервисы</button>
+        <button class="chip" data-k="free">Ключи и письма блогерам</button>
+      </div>
+      <div class="ctrls">
+        <input type="search" id="q" placeholder="Поиск: имя, @контакт, почта, id" aria-label="Поиск">
+        <select id="st" aria-label="Статус">
+          <option value="all">Любой статус</option><option value="touched">✉️ Уже на связи</option><option value="untouched">Ещё не писали</option>
+          <option value="declined">🚫 Отказались</option><option value="plan">📌 План пт–сб</option>
+          <option value="go">✅ Коллега: брать</option><option value="wait">⏳ Коллега: ждём цену</option><option value="test">🧪 Коллега: тест</option><option value="no">⛔ Коллега: не стоит</option>
+        </select>
+        <select id="lang" aria-label="Язык">
+          <option value="all">Все языки</option><option value="ru">Русский</option><option value="en">Английский</option><option value="ja">Японский</option>
+          <option value="zh">Китайский</option><option value="de">Немецкий</option><option value="fr">Французский</option><option value="es">Испанский</option><option value="pt">Португальский</option>
+        </select>
+        <select id="sort" aria-label="Сортировка">
+          <option value="rank">По рекомендации</option><option value="touch">Сначала «на связи»</option><option value="cpm">Дешевле 1000 просмотров</option>
+          <option value="views">Больше охват</option><option value="err">Выше вовлечённость</option><option value="price">Дешевле пост</option>
+        </select>
+      </div>
+    </div>
+    <div class="legend">Цвет показателя: <span class="scale"><i style="background:#16a34a"></i><i style="background:#4ade80"></i><i style="background:#facc15"></i><i style="background:#fb923c"></i><i style="background:#f87171"></i></span> отлично → плохо &nbsp;·&nbsp; ⚖️ справедливая цена = охват × 700 ₽ за 1000 просмотров &nbsp;·&nbsp; фиолетовый блок — наши движения</div>
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"><p class="why">Загружаю таблицу…</p></div>
+  </section>
+
+  <section class="sec" aria-label="Ответы">
+    <div class="box mdbox" id="answersBox">Загружаю ответы…</div>
+  </section>
+
+  <section class="sec" aria-labelledby="rev-h">
+    <h2 id="rev-h">Telegram: справедливая цена по всем каналам с ценой</h2>
+    <div class="tblw"><table class="tbl" id="revalTbl"></table></div>
+  </section>
+
+  <section class="sec" aria-labelledby="leg-h">
+    <h2 id="leg-h">Как читать показатели</h2>
+    <div class="cols">
+      <div class="box"><h3>👀 Охват</h3><p>Сколько людей увидит пост. «Замер» — средние просмотры последних постов канала. «Оценка» — подписчики × ERR по данным Telega.in.</p></div>
+      <div class="box"><h3>🔥 ERR</h3><p>Какая доля подписчиков читает посты. Больше 20% — живая аудитория. Меньше 7% — много «мёртвых» или накрученных подписчиков.</p></div>
+      <div class="box"><h3>💰 CPM</h3><p>Цена 1000 просмотров — главная цифра для сравнения. До 400 ₽ — отлично, 400–700 ₽ — хорошо, 700–1000 ₽ — нормально, дороже 1500 ₽ — переплата.</p></div>
+      <div class="box"><h3>✉️ Наши движения</h3><p>Кто писал, когда и что ответили. «Уже на связи» — не начинать новую переписку, а продолжать старую.</p></div>
+    </div>
+  </section>
+  <footer>Источники: список Telegram-каналов коллеги (23.11), трекер сделок, база блогеров (222 автора), ранние ключи, журнал MARKETING_STATUS. Сведено 24.11.2026. Цены и охваты меняются: перед оплатой сверяйте статистику на TGStat или Telemetr. Ключи Steam здесь не публикуются.</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>// Page logic for the editable GitHub copy: reads data.csv, plan.md, answers.md from the same folder at load.
+const REPO="https://github.com/Illum1nat34/mortalcaps-docs";
+const VERD={"Брать":["✅ Брать","b-go","go"],"Ждём цену":["⏳ Ждём цену","b-wait","wait"],"Тест":["🧪 Тест","b-test","test"],"Не стоит":["⛔ Не стоит","b-no","no"]};
+const ORDER={go:0,wait:1,test:2,no:3,"":4};
+const KINDS={"Telegram-реклама":"tg","Платно":"paid","Ключи и письма":"free"};
+const KIND={tg:"Telegram-реклама",paid:"Платно",free:"Ключи и письма"};
+const LANG={ru:"RU",en:"EN",ja:"JA",zh:"ZH",de:"DE",fr:"FR",es:"ES",pt:"PT"};
+const ST={"Куплено":["💸 Куплено","bought",9],"Договорились":["🤝 Договорились","agreed",8],"Назвали цену":["💰 Назвали цену","quoted",7],
+  "Ответили":["💬 Ответили","replied",6],"Отказались":["🚫 Отказались","declined",5],"Написали":["✉️ Написали","sent",4],
+  "Ранний ключ":["🔑 Ранний ключ","keys",3],"Пока не пишем":["⏸ Пока не пишем","hold",2],"В нашем плане":["🗂 В нашем плане","plan",1],"Не писали":["Не писали","todo",0]};
+const NOT_TOUCHED=new Set(["","Не писали","Пока не пишем","В нашем плане"]);
+const FAIR_CPM=700;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=s=>{const v=parseFloat(String(s??"").replace(/\s/g,"").replace(",","."));return isFinite(v)?v:null};
+const fmt=n=>n==null?"—":Math.round(n).toLocaleString("ru-RU");
+const short=n=>n==null?"—":n>=1e6?(n/1e6).toFixed(n>=1e7?0:1).replace(".",",")+" млн":n>=1e3?Math.round(n/1e3)+" тыс.":String(n);
+
+function parseCSV(t){
+  t=t.replace(/^﻿/,"");const rows=[];let row=[],f="",q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c==='"')q=true;else if(c===","){row.push(f);f=""}else if(c==="\n"){row.push(f);rows.push(row);row=[];f=""}else if(c!=="\r")f+=c}
+  if(f!==""||row.length){row.push(f);rows.push(row)}
+  const h=rows.shift().map(x=>x.trim());
+  return rows.filter(r=>r.some(x=>x.trim())).map(r=>Object.fromEntries(h.map((k,i)=>[k,(r[i]??"").trim()])));
+}
+function toEntry(r,i){
+  const kind=KINDS[r["Тип"]]||(/t\.me\//.test(r["Ссылка"])?"tg":"paid");
+  const d={i,id:r.id||"(без id)",kind,name:r["Название"]||"(без названия)",url:r["Ссылка"],lang:(r["Язык"]||"").toLowerCase(),plat:r["Площадка"],
+    subs:num(r["Подписчики"]),views:num(r["Охват"]),viewsText:r["Охват"],vs:r["Охват как"],err:num(r["ERR %"]),price:num(r["Цена ₽"]),priceText:r["Цена (текст)"],
+    v:VERD[r["Вердикт коллеги"]]?VERD[r["Вердикт коллеги"]][2]:"",vtext:r["Вердикт коллеги"],ps:r["Ответ менеджера"],c:r["Контакт"],
+    tag:r["Описание"],why:r["Почему"],wave:r["Волна / в базе"],st:r["Статус"]||"Не писали",date:r["Дата"],who:r["Кто"],note:r["Комментарий"],
+    hist:(r["История"]||"").split("‖").map(s=>s.trim()).filter(Boolean),plan:r["План пт–сб"]};
+  d.alt=(r["Цены у продавцов"]||"").split(";").map(s=>s.trim()).filter(Boolean).map(s=>{const m=s.match(/^(.*)=\s*([\d\s]+)$/);return m?[m[1].trim(),num(m[2])]:null}).filter(Boolean);
+  if(kind==="tg"){d.cpm=(d.price&&d.views)?Math.round(d.price/d.views*1000):null;d.fair=d.views?Math.round(d.views*FAIR_CPM/1000/100)*100:null;d.ratio=(d.price&&d.fair)?d.price/d.fair:null}
+  d.touched=!NOT_TOUCHED.has(d.st)||d.hist.some(h=>/· (Написали|Ответили|Назвали цену|Ранний ключ|Отказались|Куплено|Договорились):/.test(h));
+  d.isplan=!!d.plan&&!/запас/i.test(d.plan);d.res=/запас/i.test(d.plan||"");
+  d.hay=[d.id,d.name,d.c,d.url,d.tag,d.note,d.hist.join(" ")].join(" ").toLowerCase();
+  return d;
+}
+function fairInfo(d){
+  if(!d.ratio) return {c:0,t:d.price?"нет данных об охвате":"цены нет"};
+  const r=d.ratio,pct=Math.round(Math.abs(1-r)*100);
+  if(r<0.75) return {c:5,t:"Недооценён: дешевле рынка на "+pct+"%"};
+  if(r<=1.1) return {c:4,t:r<1?"По рынку (−"+pct+"%)":"По рынку"};
+  if(r<=1.5) return {c:2,t:"Дороговато: +"+pct+"%"};
+  return {c:1,t:"Переоценён в "+r.toFixed(1).replace(".",",")+" раза"};
+}
+function altsHtml(d){
+  if(!d.alt.length) return "";
+  const min=Math.min(...d.alt.map(a=>a[1])),max=Math.max(...d.alt.map(a=>a[1]));
+  const items=[...d.alt].sort((a,b)=>a[1]-b[1]).map(a=>a[1]===min?`<span class="best">${esc(a[0])} — ${fmt(a[1])} ₽</span>`:`<s>${esc(a[0])} — ${fmt(a[1])} ₽</s>`);
+  return `<p class="alts">🏷 Цены у продавцов: ${items.join(" · ")}${max>min&&d.alt.length>1?` · разброс ×${(max/min).toFixed(1).replace(".",",")}`:""}</p>`;
+}
+const cls={cpm:v=>v==null?0:v<=400?5:v<=700?4:v<=1000?3:v<=1500?2:1,views:v=>v==null?0:v>=50000?5:v>=15000?4:v>=6000?3:v>=2500?2:1,
+  err:v=>v==null?0:v>=20?5:v>=15?4:v>=10?3:v>=7?2:1,price:v=>v==null?0:v<=3000?5:v<=8000?4:v<=20000?3:v<=60000?2:1,
+  subs:v=>v==null?0:v>=500000?5:v>=100000?4:v>=30000?3:v>=5000?2:1};
+function letter(name){const ch=(String(name).match(/[A-Za-zА-Яа-яЁё0-9぀-ヿ一-鿿]/)||["?"])[0].toUpperCase();let h=0;for(const c of String(name))h=(h*31+c.charCodeAt(0))%360;
+  return `<div class="av" aria-hidden="true" style="background:linear-gradient(135deg,hsl(${h},70%,52%),hsl(${(h+50)%360},70%,40%))">${esc(ch)}</div>`;}
+function metric(label,val,c,sub){return `<div class="m c${c}"><div class="l">${label}</div><div class="v">${val}</div>${sub?`<div class="s">${sub}</div>`:""}</div>`;}
+function oursHtml(d){
+  const s=ST[d.st];
+  if(d.st==="Не писали"&&!d.hist.length&&!d.note) return `<div class="ours none"><h4>Наши движения</h4><div class="row">Пока никто не писал.</div></div>`;
+  const main=`<div class="row"><span class="st s-${s?s[1]:"note"}">${s?s[0]:esc(d.st)}</span>${d.date?` <span class="who">${esc(d.date)}</span>`:""}${d.who?` <span class="who">· ${esc(d.who)}</span>`:""}${d.note?"<br>"+esc(d.note):""}</div>`;
+  return `<div class="ours"><h4>Наши движения</h4>${main}${d.hist.map(h=>`<div class="row hist">${esc(h)}</div>`).join("")}</div>`;
+}
+function cardHtml(d,i){
+  const link=d.url?`<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a>`:`<span class="nm">${esc(d.name)}</span>`;
+  const b=[`<span class="badge b-kind">${KIND[d.kind]}${LANG[d.lang]?" · "+LANG[d.lang]:""}</span>`];
+  if(d.v) b.push(`<span class="badge ${VERD[d.vtext][1]}">${VERD[d.vtext][0]}</span>`);
+  if(d.isplan) b.push(`<span class="badge b-plan">📌 План: ${esc(d.plan)}</span>`);
+  if(d.res) b.push(`<span class="badge b-kind">🔁 Запасной на пт–сб</span>`);
+  let body;
+  if(d.kind==="tg"){
+    const fi=fairInfo(d);
+    body=`<div class="metrics">
+      ${metric("Охват",d.views?"~"+short(d.views):"—",cls.views(d.views),esc(d.vs||""))}
+      ${metric("ERR",d.err!=null?d.err.toFixed(1).replace(".",",")+"%":"—",cls.err(d.err),"читают")}
+      ${metric("Цена",d.price?(d.price<10000?fmt(d.price):Math.round(d.price/1000)+" тыс"):"?",cls.price(d.price),d.price?"₽ за пост":"ждём")}
+      ${metric("CPM",d.cpm?fmt(d.cpm):"—",cls.cpm(d.cpm),"₽ за 1000")}</div>
+      ${d.why?`<p class="why">${esc(d.why)}</p>`:""}
+      <p class="fair f${fi.c}">⚖️ Справедливо ≈ ${d.fair?fmt(d.fair)+" ₽":"—"} · <b>${fi.t}</b></p>
+      ${altsHtml(d)}${d.priceText?`<p class="price">📄 В нашем трекере: <b>${esc(d.priceText)}</b></p>`:""}
+      ${d.ps?`<p class="src">💬 ${esc(d.ps)}</p>`:""}`;
+  }else{
+    body=`<div class="metrics">
+      ${metric("Аудитория",d.subs?short(d.subs):"—",cls.subs(d.subs),"подписчики")}
+      ${metric("Медиана",esc(d.viewsText||"—"),0,"просмотров")}
+      ${metric("Язык",LANG[d.lang]||"—",0,esc(d.plat||""))}
+      ${metric(d.kind==="paid"?"Волна":"В базе",esc(((d.wave||"—").split(" · ")[0]).replace("Волна ","№")),0,esc((d.wave||"").split(" · ")[1]||""))}</div>
+      ${d.tag?`<p class="why">${esc(d.tag)}</p>`:""}
+      ${d.why?`<p class="price">ℹ️ ${esc(d.why)}</p>`:""}`;
+  }
+  return `<article class="card${d.isplan?" inplan":""}">
+    <div class="rank">#${i+1}</div>
+    <div class="head">${letter(d.name)}<div class="ttl">${link}<small>${esc(d.kind==="tg"?(d.tag+" · "+short(d.subs)+" подписчиков"):(d.plat||""))}</small></div></div>
+    <div class="verdict">${b.join("")}</div>
+    ${body}
+    ${oursHtml(d)}${d.touched?`<p class="warn">Уже на связи — продолжать в той же переписке</p>`:""}
+    <div class="foot"><span class="contact">${d.kind==="tg"?"Реклама":"Контакт"}: <b>${esc(d.c||"—")}</b></span>${d.url?`<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">Открыть ↗</a>`:""}</div>
+    <div class="rowid">строка в таблице: <code>${esc(d.id)}</code></div>
+  </article>`;
+}
+let D=[],F={k:"all",st:"all",lang:"all",q:"",sort:"rank"};
+function pass(d){
+  if(F.k!=="all"&&d.kind!==F.k) return false;
+  if(F.lang!=="all"&&d.lang!==F.lang) return false;
+  const s=F.st;
+  if(s==="touched"&&!d.touched) return false;
+  if(s==="untouched"&&d.touched) return false;
+  if(s==="declined"&&d.st!=="Отказались") return false;
+  if(s==="plan"&&!d.plan) return false;
+  if(["go","wait","test","no"].includes(s)&&d.v!==s) return false;
+  if(F.q&&!d.hay.includes(F.q)) return false;
+  return true;
+}
+const KORD={tg:0,paid:1,free:2};
+const SORT={
+  rank:(a,b)=>(b.isplan?2:b.res?1:0)-(a.isplan?2:a.res?1:0)||KORD[a.kind]-KORD[b.kind]||(a.kind==="tg"?(ORDER[a.v]-ORDER[b.v]||a.i-b.i):((b.touched?1:0)-(a.touched?1:0)||a.i-b.i)),
+  touch:(a,b)=>((ST[b.st]||[0,0,1])[2])-((ST[a.st]||[0,0,1])[2])||a.i-b.i,
+  cpm:(a,b)=>(a.cpm??1e9)-(b.cpm??1e9),views:(a,b)=>(b.views??-1)-(a.views??-1),
+  err:(a,b)=>(b.err??-1)-(a.err??-1),price:(a,b)=>(a.price??1e9)-(b.price??1e9)};
+function render(){
+  const rows=D.filter(pass).sort(SORT[F.sort]);
+  document.getElementById("grid").innerHTML=rows.map(cardHtml).join("");
+  document.getElementById("count").textContent="Показано: "+rows.length+" из "+D.length;
+}
+function renderReval(){
+  const rows=D.filter(d=>d.kind==="tg"&&d.price).sort((a,b)=>(a.ratio??9)-(b.ratio??9));
+  document.getElementById("revalTbl").innerHTML=`<tr><th>#</th><th>Канал</th><th>Цена</th><th>Охват</th><th>CPM</th><th>Справедливо</th><th>Оценка</th><th>Наш статус</th></tr>`+
+  rows.map((d,i)=>{const f=fairInfo(d),s=ST[d.st];return `<tr><td class="n">${i+1}</td><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.name)}</a></td>
+    <td class="n"><b>${fmt(d.price)} ₽</b></td><td class="n">${d.views?"~"+short(d.views):"—"}</td><td class="n">${d.cpm?fmt(d.cpm)+" ₽":"—"}</td>
+    <td class="n">${d.fair?fmt(d.fair)+" ₽":"—"}</td><td><span class="fair f${f.c}" style="display:inline-flex;padding:3px 8px"><b>${f.t}</b></span></td>
+    <td>${s?`<span class="s-${s[1]}">${s[0]}</span>`:esc(d.st)}${d.isplan?" · 📌":""}</td></tr>`}).join("");
+}
+function md(text){
+  if(window.marked&&marked.parse) return marked.parse(text);
+  return "<pre style='white-space:pre-wrap'>"+esc(text)+"</pre>";
+}
+async function loadText(name){const r=await fetch(name+"?v="+Date.now(),{cache:"no-store"});if(!r.ok) throw new Error(name+": "+r.status);return r.text()}
+async function boot(){
+  try{
+    const [csv,plan,ans]=await Promise.all([loadText("data.csv"),loadText("plan.md").catch(()=>""),loadText("answers.md").catch(()=>"")]);
+    D=parseCSV(csv).map(toEntry);
+    document.getElementById("planBox").innerHTML=md(plan);
+    document.getElementById("answersBox").innerHTML=md(ans);
+  }catch(e){
+    document.getElementById("grid").innerHTML=`<p class="why">Не удалось загрузить таблицу (${esc(e.message)}). Обновите страницу через минуту.</p>`;return;
+  }
+  document.getElementById("n-all").textContent=D.length;
+  document.getElementById("n-touch").textContent=D.filter(d=>d.touched).length;
+  document.getElementById("n-dec").textContent=D.filter(d=>d.st==="Отказались").length;
+  document.getElementById("n-plan").textContent=D.filter(d=>d.isplan).length;
+  renderReval();render();
+}
+const sync=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.k===F.k));document.getElementById("st").value=F.st;render();};
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{F.k=b.dataset.k;sync();});
+document.querySelectorAll(".sbox").forEach(b=>b.onclick=()=>{F.st=b.dataset.q;F.k="all";sync();document.getElementById("list-h").scrollIntoView();});
+document.getElementById("st").onchange=e=>{F.st=e.target.value;render();};
+document.getElementById("lang").onchange=e=>{F.lang=e.target.value;render();};
+document.getElementById("sort").onchange=e=>{F.sort=e.target.value;render();};
+let qt;document.getElementById("q").oninput=e=>{clearTimeout(qt);qt=setTimeout(()=>{F.q=e.target.value.trim().toLowerCase();render();},150);};
+boot();
+</script>
+</body></html>
