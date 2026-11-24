@@ -270,9 +270,14 @@ function fairInfo(d){
 }
 function altsHtml(d){
   if(!d.alt.length) return "";
-  const min=Math.min(...d.alt.map(a=>a[1])),max=Math.max(...d.alt.map(a=>a[1]));
-  const items=[...d.alt].sort((a,b)=>a[1]-b[1]).map(a=>a[1]===min?`<span class="best">${esc(a[0])} — ${fmt(a[1])} ₽</span>`:`<s>${esc(a[0])} — ${fmt(a[1])} ₽</s>`);
-  return `<p class="alts">🏷 Цены у продавцов: ${items.join(" · ")}${max>min&&d.alt.length>1?` · разброс ×${(max/min).toFixed(1).replace(".",",")}`:""}</p>`;
+  // a price that only holds inside a package is not a price for this channel alone: shown apart, never "best"
+  const pk=d.alt.filter(a=>/пакет/i.test(a[0])),one=d.alt.filter(a=>!/пакет/i.test(a[0]));
+  let s="";
+  if(one.length){const min=Math.min(...one.map(a=>a[1])),max=Math.max(...one.map(a=>a[1]));
+    s=[...one].sort((a,b)=>a[1]-b[1]).map(a=>a[1]===min?`<span class="best">${esc(a[0])} — ${fmt(a[1])} ₽</span>`:`<s>${esc(a[0])} — ${fmt(a[1])} ₽</s>`).join(" · ")+
+      (max>min&&one.length>1?` · разброс ×${(max/min).toFixed(1).replace(".",",")}`:"");}
+  const p=pk.map(a=>`<br>📦 ${esc(a[0])}: ${fmt(a[1])} ₽ за канал`).join("");
+  return `<p class="alts">🏷 Цены у продавцов: ${s||"—"}${p}</p>`;
 }
 const cls={cpm:v=>v==null?0:v<=400?5:v<=700?4:v<=1000?3:v<=1500?2:1,views:v=>v==null?0:v>=50000?5:v>=15000?4:v>=6000?3:v>=2500?2:1,
   err:v=>v==null?0:v>=20?5:v>=15?4:v>=10?3:v>=7?2:1,price:v=>v==null?0:v<=3000?5:v<=8000?4:v<=20000?3:v<=60000?2:1,
