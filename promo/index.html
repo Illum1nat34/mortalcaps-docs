@@ -134,6 +134,9 @@ footer{margin-top:28px;color:var(--muted);font-size:13px}
 .mdbox h2{font-size:18px;margin:16px 0 8px}.mdbox h2:first-child{margin-top:0}.mdbox h3{font-size:16px;margin:14px 0 6px}
 .mdbox p,.mdbox li{color:var(--soft);font-size:14px}.mdbox code{background:#222838;padding:1px 5px;border-radius:5px}
 .sbox.dec b{color:var(--g1)}
+.demo{margin:6px 0 0;padding:6px 10px;border-radius:8px;background:color-mix(in srgb,#f59e0b 16%,transparent);font-size:14px}
+.demo-links{margin:6px 0 14px}
+.demo-box{border-width:2px}
 </style></head>
 <body>
 <div class="wrap">
@@ -165,6 +168,8 @@ footer{margin-top:28px;color:var(--muted);font-size:13px}
   </div>
 
   <section class="sec" style="margin-top:8px" aria-label="План">
+    <div class="box plan mdbox demo-box" id="demoBox">Загружаю план выхода демо…</div>
+    <p class="demo-links">📨 <a href="letters.html"><b>Письма волны 1: 40 готовых текстов с кнопкой «Открыть в Gmail»</b></a> · <a href="https://github.com/Illum1nat34/mortalcaps-docs/edit/main/promo/demo.md" target="_blank" rel="noopener">править план демо</a></p>
     <div class="box plan mdbox" id="planBox">Загружаю план…</div>
   </section>
 
@@ -181,7 +186,7 @@ footer{margin-top:28px;color:var(--muted);font-size:13px}
         <input type="search" id="q" placeholder="Поиск: имя, @контакт, почта, id" aria-label="Поиск">
         <select id="st" aria-label="Статус">
           <option value="all">Любой статус</option><option value="touched">✉️ Уже на связи</option><option value="untouched">Ещё не писали</option>
-          <option value="declined">🚫 Отказались</option><option value="plan">📌 План пт–сб</option>
+          <option value="demo_go">🚀 Демо: писать сейчас (✉️)</option><option value="declined">🚫 Отказались</option><option value="plan">📌 План пт–сб</option>
           <option value="go">✅ Коллега: брать</option><option value="wait">⏳ Коллега: ждём цену</option><option value="test">🧪 Коллега: тест</option><option value="no">⛔ Коллега: не стоит</option>
         </select>
         <select id="lang" aria-label="Язык">
@@ -252,12 +257,12 @@ function toEntry(r,i){
     subs:num(r["Подписчики"]),views:num(r["Охват"]),viewsText:r["Охват"],vs:r["Охват как"],err:num(r["ERR %"]),price:num(r["Цена ₽"]),priceText:r["Цена (текст)"],
     v:VERD[r["Вердикт коллеги"]]?VERD[r["Вердикт коллеги"]][2]:"",vtext:r["Вердикт коллеги"],ps:r["Ответ менеджера"],c:r["Контакт"],
     tag:r["Описание"],why:r["Почему"],wave:r["Волна / в базе"],st:r["Статус"]||"Не писали",date:r["Дата"],who:r["Кто"],note:r["Комментарий"],
-    hist:(r["История"]||"").split("‖").map(s=>s.trim()).filter(Boolean),plan:r["План пт–сб"]};
+    hist:(r["История"]||"").split("‖").map(s=>s.trim()).filter(Boolean),plan:r["План пт–сб"],demo:r["Демо"]||""};
   d.alt=(r["Цены у продавцов"]||"").split(";").map(s=>s.trim()).filter(Boolean).map(s=>{const m=s.match(/^(.*)=\s*([\d\s]+)$/);return m?[m[1].trim(),num(m[2])]:null}).filter(Boolean);
   if(kind==="tg"){d.cpm=(d.price&&d.views)?Math.round(d.price/d.views*1000):null;d.fair=d.views?Math.round(d.views*FAIR_CPM/1000/100)*100:null;d.ratio=(d.price&&d.fair)?d.price/d.fair:null}
   d.touched=!NOT_TOUCHED.has(d.st)||d.hist.some(h=>/· (Написали|Ответили|Назвали цену|Ранний ключ|Отказались|Куплено|Договорились):/.test(h));
   d.isplan=!!d.plan&&!/запас/i.test(d.plan);d.res=/запас/i.test(d.plan||"");
-  d.hay=[d.id,d.name,d.c,d.url,d.tag,d.note,d.hist.join(" ")].join(" ").toLowerCase();
+  d.hay=[d.id,d.name,d.c,d.url,d.tag,d.note,d.demo,d.hist.join(" ")].join(" ").toLowerCase();
   return d;
 }
 function fairInfo(d){
@@ -322,6 +327,7 @@ function cardHtml(d,i){
     <div class="rank">#${i+1}</div>
     <div class="head">${letter(d.name)}<div class="ttl">${link}<small>${esc(d.kind==="tg"?(d.tag+" · "+short(d.subs)+" подписчиков"):(d.plat||""))}</small></div></div>
     <div class="verdict">${b.join("")}</div>
+    ${d.demo?`<p class="demo">🚀 <b>Демо:</b> ${esc(d.demo)}</p>`:""}
     ${body}
     ${oursHtml(d)}${d.touched?`<p class="warn">Уже на связи — продолжать в той же переписке</p>`:""}
     <div class="foot"><span class="contact">${d.kind==="tg"?"Реклама":"Контакт"}: <b>${esc(d.c||"—")}</b></span>${d.url?`<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">Открыть ↗</a>`:""}</div>
@@ -336,6 +342,7 @@ function pass(d){
   if(s==="touched"&&!d.touched) return false;
   if(s==="untouched"&&d.touched) return false;
   if(s==="declined"&&d.st!=="Отказались") return false;
+  if(s==="demo_go"&&!/^✉️/.test(d.demo)) return false;
   if(s==="plan"&&!d.plan) return false;
   if(["go","wait","test","no"].includes(s)&&d.v!==s) return false;
   if(F.q&&!d.hay.includes(F.q)) return false;
@@ -367,9 +374,10 @@ function md(text){
 async function loadText(name){const r=await fetch(name+"?v="+Date.now(),{cache:"no-store"});if(!r.ok) throw new Error(name+": "+r.status);return r.text()}
 async function boot(){
   try{
-    const [csv,plan,ans]=await Promise.all([loadText("data.csv"),loadText("plan.md").catch(()=>""),loadText("answers.md").catch(()=>"")]);
+    const [csv,plan,ans,demo]=await Promise.all([loadText("data.csv"),loadText("plan.md").catch(()=>""),loadText("answers.md").catch(()=>""),loadText("demo.md").catch(()=>"")]);
     D=parseCSV(csv).map(toEntry);
     document.getElementById("planBox").innerHTML=md(plan);
+    document.getElementById("demoBox").innerHTML=md(demo);
     document.getElementById("answersBox").innerHTML=md(ans);
   }catch(e){
     document.getElementById("grid").innerHTML=`<p class="why">Не удалось загрузить таблицу (${esc(e.message)}). Обновите страницу через минуту.</p>`;return;
